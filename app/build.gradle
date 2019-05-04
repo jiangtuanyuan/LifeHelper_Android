@@ -1,13 +1,39 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'jiang'
+            keyPassword 'jiang1008'
+            storeFile file('../jty.jks')
+            storePassword 'jiang1008'
+        }
+
+        release {
+            try {
+                storeFile file("./keystore/jty.jks")
+                storePassword "jiang1008"
+                keyAlias "jiang"
+                keyPassword "jiang1008"
+            } catch (ex) {
+                throw new InvalidUserDataException(ex.toString())
+            }
+        }
+        debug {
+            storeFile file("./keystore/jty.jks")
+            storePassword "jiang1008"
+            keyAlias "jiang"
+            keyPassword "jiang1008"
+        }
+
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "pers.life.helper"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1."+versionCode
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
