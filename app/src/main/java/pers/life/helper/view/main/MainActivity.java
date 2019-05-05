@@ -1,5 +1,6 @@
 package pers.life.helper.view.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,6 +13,7 @@ import pers.life.helper.R;
 import pers.life.helper.utils.AppUtils;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
+import pers.life.helper.view.ip.QueryIPActivity;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.toolbar)
@@ -40,14 +42,17 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tv_tel, R.id.tv_ip})
+    @OnClick({R.id.tv_tel, R.id.tv_ip, R.id.tv_card})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_tel:
                 ToastUtil.showToast("归属地查询");
                 break;
             case R.id.tv_ip:
-                ToastUtil.showToast("IP查询");
+                startActivity(new Intent(this, QueryIPActivity.class));
+                break;
+            case R.id.tv_card:
+                ToastUtil.showToast("身份证");
                 break;
             default:
                 break;

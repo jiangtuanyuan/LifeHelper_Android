@@ -8,4 +8,5 @@
     <color name="font_color">#666666</color>
     <color name="white">#ffffff</color>
     <color name="gray_q">#cecece</color>
+    <color name="red">#f60606</color>
 </resources>

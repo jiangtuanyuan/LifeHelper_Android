@@ -21,6 +21,11 @@ import android.view.WindowManager;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.File;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -359,6 +364,7 @@ public final class AppUtils {
         intent.setData(Uri.fromParts("package", context.getPackageName(), null));
         context.startActivity(intent);
     }
+
     /**
      * 检测权限
      *
@@ -392,4 +398,21 @@ public final class AppUtils {
         }
     }
 
+    public static String getIP(Context context) {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress() && (inetAddress instanceof Inet4Address)) {
+                        return inetAddress.getHostAddress().toString();
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+            return "";
+        }
+        return "";
+    }
 }

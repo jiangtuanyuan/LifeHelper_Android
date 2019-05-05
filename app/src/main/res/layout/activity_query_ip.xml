@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.ip.QueryIPActivity">
+
+    <include layout="@layout/toolbar" />
+
+
+    <TextView
+        android:id="@+id/tv_this_ip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="本机IP:0.0.0.0"
+        android:textColor="@color/font_color"
+        android:textSize="12sp" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/font_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_no1"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_ip_et_bg"
+            android:digits="0123456789"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:padding="4dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="."
+            android:textColor="@color/font_color"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_no2"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="-1dp"
+            android:background="@drawable/shape_ip_et_bg"
+            android:digits="0123456789"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:padding="4dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="."
+            android:textColor="@color/font_color"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_no3"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="-1dp"
+            android:background="@drawable/shape_ip_et_bg"
+            android:digits="0123456789"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:padding="4dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="."
+            android:textColor="@color/font_color"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_no4"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="-1dp"
+            android:background="@drawable/shape_ip_et_bg"
+            android:digits="0123456789"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="3"
+            android:padding="4dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_query"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/shape_ip_bt_bg"
+        android:text="查 询"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="20dp"
+        android:background="@color/font_color" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text=" 查 询 状 态:"
+            android:textColor="@color/font_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_query_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="无"
+            android:textColor="@color/main_color"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="IP所在国家:"
+            android:textColor="@color/font_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_ip_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="无"
+            android:textColor="@color/main_color"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="IP所在省市:"
+            android:textColor="@color/font_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_ip_province"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="无"
+            android:textColor="@color/main_color"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="IP所在城市:"
+            android:textColor="@color/font_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_ip_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="无"
+            android:textColor="@color/main_color"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="运    营    商:"
+            android:textColor="@color/font_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_ip_isp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="bottom"
+            android:text="无"
+            android:textColor="@color/main_color"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

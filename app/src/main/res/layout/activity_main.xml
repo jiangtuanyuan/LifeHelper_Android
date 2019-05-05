@@ -28,5 +28,16 @@
                 android:text="IP地址查询" />
         </TableRow>
 
+        <TableRow tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/tv_card"
+                style="@style/TextViewStyle"
+                android:drawableTop="@mipmap/ic_main_card"
+                android:text="身份证查询" />
+
+
+        </TableRow>
+
     </TableLayout>
 </LinearLayout>

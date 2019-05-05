@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="pers.life.helper">
-    <!--权限声明-->
+    <!-- 权限声明 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -35,7 +35,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <!--7.0文件权限配置-->
+        <activity android:name=".view.ip.QueryIPActivity"></activity>
+        <!-- 7.0文件权限配置 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="pers.life.helper.fileprovider"
@@ -44,14 +45,13 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
-        </provider>
-
-        <!-- 启动页入口 -->
+        </provider> <!-- 启动页入口 -->
         <activity
             android:name=".view.splash.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
