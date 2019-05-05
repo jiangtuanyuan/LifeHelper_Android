@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.jakewharton.butterknife'
 android {
     signingConfigs {
         config {
@@ -15,8 +15,7 @@ android {
                 storePassword "jiang1008"
                 keyAlias "jiang"
                 keyPassword "jiang1008"
-            } catch (ex) {
-                throw new InvalidUserDataException(ex.toString())
+            } catch (ignored) {
             }
         }
         debug {
@@ -33,7 +32,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "1."+versionCode
+        versionName "1." + versionCode
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -41,6 +40,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -51,4 +54,20 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    /*RxJava*/
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
+    /*权限请求*/
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    /*Okgo*/
+    implementation 'com.lzy.net:okgo:3.0.4'
+    /*Butterknife*/
+    implementation 'com.jakewharton:butterknife:9.0.0-rc2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    /*日志打印*/
+    implementation 'com.orhanobut:logger:2.2.0'
+    /*加载*/
+    implementation 'com.kaopiz:kprogresshud:1.2.0'
+
 }

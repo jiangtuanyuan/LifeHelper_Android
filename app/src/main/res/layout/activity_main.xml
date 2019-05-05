@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    tools:context=".view.main.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <include layout="@layout/toolbar" />
+
+    <TableLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center">
 
-</android.support.constraint.ConstraintLayout>
+        <TableRow tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/tv_tel"
+                style="@style/TextViewStyle"
+                android:drawableTop="@mipmap/ic_main_tel"
+                android:text="手机号码归属地查询" />
+
+            <TextView
+                android:id="@+id/tv_ip"
+                style="@style/TextViewStyle"
+                android:drawableTop="@mipmap/ic_main_ip"
+                android:text="IP地址查询" />
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>
