@@ -29,13 +29,10 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                SplashActivity.this.finish();
-            }
+        new Handler().postDelayed(() -> {
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            SplashActivity.this.finish();
         }, 2000);
-        tvVersion.setText("V-" + AppUtils.getVersionName(this));
+        tvVersion.setText("v: " + AppUtils.getVersionName(this));
     }
 }

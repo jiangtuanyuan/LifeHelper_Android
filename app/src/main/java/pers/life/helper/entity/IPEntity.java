@@ -6,79 +6,40 @@ package pers.life.helper.entity;
  * desc   :
  */
 public class IPEntity {
-    private String resultcode;
-    private String reason;
-    private String error_code;
-    private result result;
+    private String Country;
+    private String Province;
+    private String City;
+    private String Isp;
 
-    public String getResultcode() {
-        return resultcode;
+    public String getCountry() {
+        return Country;
     }
 
-    public void setResultcode(String resultcode) {
-        this.resultcode = resultcode;
+    public void setCountry(String country) {
+        Country = country;
     }
 
-    public String getReason() {
-        return reason;
+    public String getProvince() {
+        return Province;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
+    public void setProvince(String province) {
+        Province = province;
     }
 
-    public String getError_code() {
-        return error_code;
+    public String getCity() {
+        return City;
     }
 
-    public void setError_code(String error_code) {
-        this.error_code = error_code;
+    public void setCity(String city) {
+        City = city;
     }
 
-    public IPEntity.result getResult() {
-        return result;
+    public String getIsp() {
+        return Isp;
     }
 
-    public void setResult(IPEntity.result result) {
-        this.result = result;
-    }
-
-    public class result {
-        private String Country;
-        private String Province;
-        private String City;
-        private String Isp;
-
-        public String getCountry() {
-            return Country;
-        }
-
-        public void setCountry(String country) {
-            Country = country;
-        }
-
-        public String getProvince() {
-            return Province;
-        }
-
-        public void setProvince(String province) {
-            Province = province;
-        }
-
-        public String getCity() {
-            return City;
-        }
-
-        public void setCity(String city) {
-            City = city;
-        }
-
-        public String getIsp() {
-            return Isp;
-        }
-
-        public void setIsp(String isp) {
-            Isp = isp;
-        }
+    public void setIsp(String isp) {
+        Isp = isp;
     }
 }

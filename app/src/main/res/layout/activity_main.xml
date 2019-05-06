@@ -19,13 +19,13 @@
                 android:id="@+id/tv_tel"
                 style="@style/TextViewStyle"
                 android:drawableTop="@mipmap/ic_main_tel"
-                android:text="手机号码归属地查询" />
+                android:text="手机号码归属地" />
 
             <TextView
                 android:id="@+id/tv_ip"
                 style="@style/TextViewStyle"
                 android:drawableTop="@mipmap/ic_main_ip"
-                android:text="IP地址查询" />
+                android:text="IP地址" />
         </TableRow>
 
         <TableRow tools:ignore="UselessParent">
@@ -34,8 +34,13 @@
                 android:id="@+id/tv_card"
                 style="@style/TextViewStyle"
                 android:drawableTop="@mipmap/ic_main_card"
-                android:text="身份证查询" />
+                android:text="身份证" />
 
+            <TextView
+                android:id="@+id/tv_zip_code"
+                style="@style/TextViewStyle"
+                android:drawableTop="@mipmap/ic_main_zip_code"
+                android:text="邮编查询" />
 
         </TableRow>
 

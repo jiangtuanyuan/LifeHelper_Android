@@ -3,7 +3,6 @@ package pers.life.helper.app;
 import android.app.Application;
 import android.content.Context;
 
-
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -11,17 +10,31 @@ import com.lzy.okgo.cookie.CookieJarImpl;
 import com.lzy.okgo.cookie.store.SPCookieStore;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
-
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import pers.life.helper.BuildConfig;
-import pers.life.helper.net.API;
-import pers.life.helper.net.NetInterceptor;
+import pers.life.helper.R;
 
 //app入口
 public class MyApp extends Application {
+    static {
+        //设置全局的Header构建器
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
+            layout.setPrimaryColorsId(R.color.white, android.R.color.black);//全局设置主题颜色
+            return new ClassicsHeader(context)
+                    .setDrawableSize(14);
+        });
+        //设置全局的Footer构建器
+        SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
+            //指定为经典Footer，默认是 BallPulseFooter
+            return new ClassicsFooter(context).setDrawableSize(14);
+        });
+    }
 
     private static MyApp sInstance;
     private static Context sContext;

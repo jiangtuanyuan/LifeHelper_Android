@@ -120,16 +120,16 @@ public class QueryIPActivity extends BaseActivity {
         tvQueryStatus.setText("成功");
         tvQueryStatus.setTextColor(getResources().getColor(R.color.main_color));
 
-        tvIpCountry.setText(mIPEntity.getResult().getCountry());
+        tvIpCountry.setText(mIPEntity.getCountry());
         tvIpCountry.setTextColor(getResources().getColor(R.color.main_color));
 
-        tvIpProvince.setText(mIPEntity.getResult().getProvince());
+        tvIpProvince.setText(mIPEntity.getProvince());
         tvIpProvince.setTextColor(getResources().getColor(R.color.main_color));
 
-        tvIpCity.setText(mIPEntity.getResult().getCity());
+        tvIpCity.setText(mIPEntity.getCity());
         tvIpCity.setTextColor(getResources().getColor(R.color.main_color));
 
-        tvIpIsp.setText(mIPEntity.getResult().getIsp());
+        tvIpIsp.setText(mIPEntity.getIsp());
         tvIpIsp.setTextColor(getResources().getColor(R.color.main_color));
     }
 
@@ -161,16 +161,16 @@ public class QueryIPActivity extends BaseActivity {
                             String result = JSON.optString(API.SUCCESS_DATA);
                             if (code.equals("200")) {
                                 Gson gson = new Gson();
-                                mIPEntity = gson.fromJson(response.body(), IPEntity.class);
+                                mIPEntity = gson.fromJson(result, IPEntity.class);
                                 initSuccess();
                             } else {
                                 initError(JSON.optString(API.SUCCESS_REASON));
                             }
                         } catch (Exception s) {
+                            s.printStackTrace();
                             initError("解析错误!");
                         }
                     }
-
                     @Override
                     public void onError(Response<String> response) {
                         closeProgressDialog();

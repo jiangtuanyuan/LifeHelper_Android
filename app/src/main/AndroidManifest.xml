@@ -35,8 +35,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".view.ip.QueryIPActivity"></activity>
-        <!-- 7.0文件权限配置 -->
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="pers.life.helper.fileprovider"
@@ -45,7 +44,8 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
-        </provider> <!-- 启动页入口 -->
+        </provider>
+
         <activity
             android:name=".view.splash.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -56,6 +56,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.main.MainActivity" />
+        <activity android:name=".view.phone.QueryPhoneActivity" />
+        <activity android:name=".view.ip.QueryIPActivity" />
+        <activity
+            android:name=".view.postcode.PostcodeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".view.card.QueryCardActivity" />
     </application>
-
 </manifest>

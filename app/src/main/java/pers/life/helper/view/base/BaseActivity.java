@@ -1,6 +1,7 @@
 package pers.life.helper.view.base;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.inputmethod.InputMethodManager;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
+import com.lzy.okgo.OkGo;
 
 import butterknife.ButterKnife;
 import pers.life.helper.R;
@@ -26,6 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         initViews(savedInstanceState);
         ActivityCollector.addActivity(this);
     }
+
     public void initToolbarNav() {
         if (mToolbar == null) {
             try {
@@ -88,6 +91,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ActivityCollector.removeActivity(this);
+        OkGo.getInstance().cancelTag(this);
     }
 
     protected abstract int setLayoutResourceID();
