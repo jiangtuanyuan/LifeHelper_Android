@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,12 +16,9 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.functions.Consumer;
 import pers.life.helper.R;
 import pers.life.helper.utils.LocationAmpUtils;
-import pers.life.helper.utils.LogUtil;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
 
@@ -105,13 +101,14 @@ public class WeatherActivity extends BaseActivity implements Toolbar.OnMenuItemC
                 tvCityName.setText(location.getDistrict());
                 tvCityName.setTextColor(getResources().getColor(R.color.main_color));
                 isFirstLoc = false;
+            } else {
                 isLocationing = false;
             }
         } else {
             Drawable drawable = getResources().getDrawable(R.mipmap.ic_weather_location_gray);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight()); //设置边界
             tvCityName.setCompoundDrawables(drawable, null, null, null);
-            isLocationing = true;
+            isLocationing = false;
             tvCityName.setText("定位失败");
             tvCityName.setTextColor(getResources().getColor(R.color.font_color));
         }
