@@ -11,12 +11,13 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import pers.life.helper.R;
 import pers.life.helper.utils.AppUtils;
-import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
 import pers.life.helper.view.card.QueryCardActivity;
 import pers.life.helper.view.ip.QueryIPActivity;
+import pers.life.helper.view.joke.JokeActivity;
 import pers.life.helper.view.phone.QueryPhoneActivity;
 import pers.life.helper.view.postcode.PostcodeActivity;
+import pers.life.helper.view.weather.WeatherActivity;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.toolbar)
@@ -43,7 +44,7 @@ public class MainActivity extends BaseActivity {
         AppUtils.checkPermissions(this);
     }
 
-    @OnClick({R.id.tv_tel, R.id.tv_ip, R.id.tv_card,R.id.tv_zip_code})
+    @OnClick({R.id.tv_tel, R.id.tv_ip, R.id.tv_card, R.id.tv_zip_code, R.id.tv_joke, R.id.tv_weather})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_tel:
@@ -57,6 +58,12 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_zip_code:
                 startActivity(new Intent(this, PostcodeActivity.class));
+                break;
+            case R.id.tv_joke:
+                startActivity(new Intent(this, JokeActivity.class));
+                break;
+            case R.id.tv_weather:
+                startActivity(new Intent(this, WeatherActivity.class));
                 break;
             default:
                 break;

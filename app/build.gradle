@@ -74,5 +74,11 @@ dependencies {
     /*gson*/
     implementation 'com.google.code.gson:gson:2.8.5'
     /*下拉刷新*/
-    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    /*BaseAdapter*/
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //定位功能
+    implementation 'com.amap.api:location:4.6.0'
+    //搜索功能
+    compile 'com.amap.api:search:6.5.0.1'
 }

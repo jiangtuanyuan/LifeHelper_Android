@@ -25,6 +25,8 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -374,11 +376,17 @@ public final class AppUtils {
      */
     public static void checkPermissions(BaseActivity context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            new RxPermissions(context).request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.VIBRATE,
-                    Manifest.permission.INTERNET, Manifest.permission.ACCESS_WIFI_STATE,
-                    Manifest.permission.WAKE_LOCK, Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.CHANGE_WIFI_STATE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
-                    Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SYSTEM_ALERT_WINDOW)
+            new RxPermissions(context).request(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.VIBRATE,
+                    Manifest.permission.INTERNET,
+                    Manifest.permission.ACCESS_WIFI_STATE,
+                    Manifest.permission.WAKE_LOCK,
+                    Manifest.permission.ACCESS_NETWORK_STATE,
+                    Manifest.permission.CHANGE_WIFI_STATE,
+                    Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.SYSTEM_ALERT_WINDOW)
                     .subscribe(new Observer<Boolean>() {
                         @Override
                         public void onSubscribe(Disposable d) {
@@ -427,4 +435,9 @@ public final class AppUtils {
         return m.matches();
     }
 
+    public static String getDateToString(long milSecond) {
+        Date date = new Date(milSecond);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
+    }
 }

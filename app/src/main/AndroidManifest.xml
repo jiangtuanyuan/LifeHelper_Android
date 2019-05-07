@@ -36,6 +36,13 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
 
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="8fd357a912a4dce5588074b0a14ad29f" />
+        <!-- 定位需要的服务 -->
+        <service android:name="com.amap.api.location.APSService" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="pers.life.helper.fileprovider"
@@ -62,5 +69,8 @@
             android:name=".view.postcode.PostcodeActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".view.card.QueryCardActivity" />
+        <activity android:name=".view.weather.WeatherActivity" />
+        <activity android:name=".view.joke.JokeActivity" />
     </application>
+
 </manifest>

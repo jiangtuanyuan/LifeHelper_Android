@@ -2,16 +2,15 @@ package pers.life.helper.view.postcode;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -29,10 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pers.life.helper.R;
-import pers.life.helper.entity.PhoneEntity;
 import pers.life.helper.entity.PostcodeEntity;
 import pers.life.helper.net.API;
 import pers.life.helper.utils.ToastUtil;
@@ -80,9 +77,9 @@ public class PostcodeActivity extends BaseActivity implements OnRefreshListener,
         refreshLayout.setOnRefreshListener(this);//进行下拉刷新的监听
         refreshLayout.setOnLoadMoreListener(this);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
-        mPostcodeItemAdapter = new PostcodeItemAdapter(this, mSumList);
+        mPostcodeItemAdapter = new PostcodeItemAdapter(mSumList);
+        mPostcodeItemAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);//添加缩放动画效果
         mRecycler.setAdapter(mPostcodeItemAdapter);
-        //mRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
     /**

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.joke.JokeActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <include
+        layout="@layout/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/colorPrimary"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/iv_return_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="60dp"
+        android:src="@mipmap/ic_joke_return_top" />
+
+</RelativeLayout>

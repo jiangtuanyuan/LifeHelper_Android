@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context=".view.weather.WeatherActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/re_top"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignParentTop="true">
+
+                <TextView
+                    android:id="@+id/tv_city_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:drawableStart="@mipmap/ic_weather_location_gray"
+                    android:drawablePadding="6dp"
+                    android:padding="10dp"
+                    android:text="定位中.."
+                    android:textColor="@color/font_color"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_city_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawableStart="@mipmap/ic_weather_new"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="重新定位"
+                    android:textColor="@color/main_color"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/re_top"
+                android:background="@color/font_color" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/colorPrimary"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

@@ -34,13 +34,29 @@
                 android:id="@+id/tv_card"
                 style="@style/TextViewStyle"
                 android:drawableTop="@mipmap/ic_main_card"
-                android:text="身份证" />
+                android:text="身份证效验" />
 
             <TextView
                 android:id="@+id/tv_zip_code"
                 style="@style/TextViewStyle"
                 android:drawableTop="@mipmap/ic_main_zip_code"
                 android:text="邮编查询" />
+
+        </TableRow>
+
+        <TableRow tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/tv_weather"
+                style="@style/TextViewStyle"
+                android:drawableTop="@mipmap/ic_main_weather"
+                android:text="天气预报" />
+
+            <TextView
+                android:id="@+id/tv_joke"
+                style="@style/TextViewStyle"
+                android:drawableTop="@mipmap/ic_main_joke"
+                android:text="随机笑话" />
 
         </TableRow>
 
