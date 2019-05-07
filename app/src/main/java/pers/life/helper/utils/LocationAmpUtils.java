@@ -148,8 +148,7 @@ public class LocationAmpUtils implements GeocodeSearch.OnGeocodeSearchListener {
                     sb.append("错误信息:" + location.getErrorInfo() + "\n");
                     sb.append("错误描述:" + location.getLocationDetail() + "\n");
                 }
-
-                LogUtil.i("手机定位", sb.toString());
+                //LogUtil.i("手机定位", sb.toString());
             } else {
                 String errText = "定位失败," + location.getErrorCode() + ": " + location.getErrorInfo();
                 LogUtil.i("Amap", errText);

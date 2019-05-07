@@ -135,7 +135,7 @@ public class QueryPhoneActivity extends BaseActivity {
      * 查询
      */
     private void getPhoneInfos() {
-        OkGo.<String>post(API.PHONE_QUERY_URL)
+        OkGo.<String>get(API.PHONE_QUERY_URL)
                 .tag(this)
                 .params("key", "59d782a7e1a229e751a30e2c6cb18c92")
                 .params("phone", etPhone.getText().toString())

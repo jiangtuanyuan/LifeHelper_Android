@@ -116,7 +116,6 @@ public class NetInterceptor implements Interceptor {
                 } else {
                     //如果是表单的形式提交
                     if (request.body() instanceof FormBody) {
-                        //为每个请求添加did和店铺ID
                         FormBody.Builder builder = new FormBody.Builder();
                         RequestBody requestBody = request.body();
                         FormBody body = (FormBody) requestBody;

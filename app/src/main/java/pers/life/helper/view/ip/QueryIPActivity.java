@@ -145,7 +145,7 @@ public class QueryIPActivity extends BaseActivity {
         buffer.append(etNo3.getText().toString())
                 .append(".");
         buffer.append(etNo4.getText().toString());
-        OkGo.<String>post(API.IP_QUERY_URL)
+        OkGo.<String>get(API.IP_QUERY_URL)
                 .tag(this)
                 .params("key", API.APP_KEY)
                 .params("ip", buffer.toString())

@@ -131,7 +131,7 @@ public class PostcodeActivity extends BaseActivity implements OnRefreshListener,
      */
     private void getInfos() {
         btQuery.setEnabled(false);
-        OkGo.<String>post(API.POSTCODE_QUERY_URL)
+        OkGo.<String>get(API.POSTCODE_QUERY_URL)
                 .tag(this)
                 .params("key", "3f5f103d0e7d6ce980ed0dc0d5f8975c")
                 .params("postcode", etPostcode.getText().toString())

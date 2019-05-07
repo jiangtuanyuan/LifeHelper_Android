@@ -205,7 +205,7 @@ public class WeatherEntity {
          * wash_index : 较适宜   【洗衣指数】
          * travel_index : 较适宜   【旅游指数】
          * exercise_index : 较适宜 【运动指数】
-         * drying_index :
+         * drying_index : 烘干指数
          */
 
         private String temperature;

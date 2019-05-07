@@ -105,7 +105,7 @@ public class JokeActivity extends BaseActivity implements OnRefreshListener, OnL
      * 获取十条随机笑话
      */
     private void getRandomJoke(final boolean tf) {
-        OkGo.<String>post(API.JOKE_QUERY_URL)
+        OkGo.<String>get(API.JOKE_QUERY_URL)
                 .tag(this)
                 .params("key", "0eac712681940104050d3d96d03b87cd")
                 .execute(new StringCallback() {

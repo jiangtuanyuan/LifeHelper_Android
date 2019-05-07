@@ -116,7 +116,7 @@ public class QueryCardActivity extends BaseActivity {
      * 查询
      */
     private void getPhoneInfos() {
-        OkGo.<String>post(API.CARD_QUERY_URL)
+        OkGo.<String>get(API.CARD_QUERY_URL)
                 .tag(this)
                 .params("key", "81821ba9b68783b12dd734e8c0fb83f2")
                 .params("cardno", etCardId.getText().toString())

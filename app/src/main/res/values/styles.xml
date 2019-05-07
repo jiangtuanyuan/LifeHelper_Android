@@ -49,4 +49,9 @@
         <item name="android:layout_margin">5dp</item>
         <item name="android:background">@drawable/selector_view_pressed_gray_bg</item>
     </style>
+    <style name="CustomDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 </resources>
