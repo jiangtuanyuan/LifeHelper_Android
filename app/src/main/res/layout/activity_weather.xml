@@ -68,7 +68,7 @@
                 android:layout_centerInParent="true"
                 android:indeterminateTint="@color/colorPrimary"
                 android:indeterminateTintMode="src_atop"
-                android:visibility="invisible" />
+                android:visibility="visible" />
 
             <ScrollView
                 android:id="@+id/scrollView"
@@ -76,7 +76,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/view_line"
                 android:layout_centerInParent="true"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
