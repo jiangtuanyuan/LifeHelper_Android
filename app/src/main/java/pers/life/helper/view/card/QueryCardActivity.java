@@ -53,7 +53,7 @@ public class QueryCardActivity extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setTitle("号码归属地查询");
+        setTitle("身份证效验");
         initToolbarNav();
     }
 

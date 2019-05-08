@@ -14,6 +14,7 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
@@ -440,4 +441,50 @@ public final class AppUtils {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(date);
     }
+
+    /**
+     * 通过一个Url地址 提取出Url的文件名
+     * 例如：http://192.168.137.55:8080/XSJX/SchoolTopImg/school1.jpg 返回
+     * school1.jpg
+     *
+     * @author 蒋团圆
+     * @Date 2017年11月28日 下午08:45:37
+     */
+    public static String getFileName(String url) {
+        String suffixes = "avi|mpeg|3gp|mp3|mp4|wav|jpeg|gif|jpg|png|apk|exe|txt|html|htm|java|doc|jsp|zip|xls|xlsx|docx|ppt|pptx";
+        String file = url.substring(url.lastIndexOf('/') + 1);// 截取url最后的数据
+        Pattern pat = Pattern.compile("[\\w]+[\\.](" + suffixes + ")");// 正则判断
+        Matcher mc = pat.matcher(file);
+        while (mc.find()) {
+            String substring = mc.group();// 截取文件名后缀名
+            return substring;
+        }
+        return "";
+    }
+
+    /**
+     * 安装APK
+     *
+     * @param filePath
+     */
+    public static void InstallApk(Context mContext, String filePath) {
+        File apkFile = new File(filePath);
+        //Intent intent = new Intent(Intent.ACTION_VIEW);
+        Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);//8.0
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Uri contentUri = FileProvider.getUriForFile(
+                    mContext
+                    , "pers.life.helper.fileprovider"
+                    , apkFile);
+            intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+        } else {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
+        }
+        mContext.startActivity(intent);
+    }
+
+
 }

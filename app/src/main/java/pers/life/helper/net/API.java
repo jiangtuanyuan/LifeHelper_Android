@@ -11,6 +11,10 @@ public class API {
     public final static String ERROR_CODE = "error_code";
     public final static String SUCCESS_REASON = "reason";
     public final static String SUCCESS_DATA = "result";
+    public final static String APP_UPDATE_URL = " http://119.29.14.38/LoveYou/update.html";
+
+    public final static String APP_UPDATE_APK_URL = "http://119.29.14.38/LoveYou/lifehelper.apk";
+
     //异常
     public final static String ERROR_STRING = "网络不好,请重试!";
     //ip 查询

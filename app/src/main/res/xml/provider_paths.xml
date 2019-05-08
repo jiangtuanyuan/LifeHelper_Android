@@ -3,5 +3,5 @@
     <!--"."表示所有路径-->
     <external-path
         name="my_images"
-        path="images/" />
+        path="/" />
 </paths>
