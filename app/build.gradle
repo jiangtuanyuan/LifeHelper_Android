@@ -80,5 +80,5 @@ dependencies {
     //定位功能
     implementation 'com.amap.api:location:4.6.0'
     //搜索功能
-    compile 'com.amap.api:search:6.5.0.1'
+    implementation 'com.amap.api:search:6.5.0.1'
 }
