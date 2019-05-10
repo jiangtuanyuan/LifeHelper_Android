@@ -129,6 +129,7 @@ public class SPUtils {
     /*-----SP的文件里面的常量Key START final 不可更改-------*/
     public static final String USER_TEL = "tel";//电话号码
     public static final String USER_PWD = "pwd";//密码
+    public static final String USER_NAME = "username";//密码
     /*-----SP的文件里面的Key END-------*/
 
 }

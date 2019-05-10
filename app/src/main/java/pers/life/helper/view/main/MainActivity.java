@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.format.Formatter;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,13 +28,17 @@ import butterknife.OnClick;
 import pers.life.helper.R;
 import pers.life.helper.net.API;
 import pers.life.helper.utils.AppUtils;
+import pers.life.helper.utils.IOSDialog;
+import pers.life.helper.utils.IOSDialogUtils;
 import pers.life.helper.utils.LogUtil;
 import pers.life.helper.utils.NumberProgressBar;
+import pers.life.helper.utils.SPUtils;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
 import pers.life.helper.view.card.QueryCardActivity;
 import pers.life.helper.view.ip.QueryIPActivity;
 import pers.life.helper.view.joke.JokeActivity;
+import pers.life.helper.view.login.LoginActivity;
 import pers.life.helper.view.phone.QueryPhoneActivity;
 import pers.life.helper.view.postcode.PostcodeActivity;
 import pers.life.helper.view.weather.WeatherActivity;
@@ -44,6 +50,10 @@ public class MainActivity extends BaseActivity {
     TextView tvTel;
     @BindView(R.id.tv_ip)
     TextView tvIp;
+    @BindView(R.id.tv_user_name)
+    TextView tvUserName;
+
+    private String mUserName = SPUtils.getInstance().getString(SPUtils.USER_NAME);
 
     @Override
     protected int setLayoutResourceID() {
@@ -60,7 +70,54 @@ public class MainActivity extends BaseActivity {
         setTitle("\t\t" + getResources().getString(R.string.app_name) + "\t" + AppUtils.getVersionName(this));
         setSupportActionBar(toolbar);
         AppUtils.checkPermissions(this);
+        tvUserName.setText("欢迎您," + mUserName);
         checkAppUpdate();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_exit, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.exit:
+                LoginExit();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     * 退出
+     */
+    private void LoginExit() {
+        IOSDialogUtils.IOSDialogBean iosDialogBean = new IOSDialogUtils.IOSDialogBean();
+        iosDialogBean.setmTitle("提示");
+        iosDialogBean.setCancelable(false);
+        iosDialogBean.setmMgs("是否注销登陆?");
+        iosDialogBean.setOnButtonClickListener(new IOSDialogUtils.OnButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(IOSDialog dialog) {
+                dialog.dismiss();
+                SPUtils.getInstance().clear();
+                SPUtils.getInstance().putString(SPUtils.USER_NAME, mUserName);
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onCancelButtonClick(IOSDialog dialog) {
+                dialog.dismiss();
+            }
+        });
+        IOSDialogUtils.getInstance().showDialogIOS(this, iosDialogBean);
     }
 
     @OnClick({R.id.tv_tel, R.id.tv_ip, R.id.tv_card, R.id.tv_zip_code, R.id.tv_joke, R.id.tv_weather})

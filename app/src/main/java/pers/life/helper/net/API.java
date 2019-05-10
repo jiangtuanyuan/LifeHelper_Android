@@ -33,4 +33,9 @@ public class API {
     public final static String WEATHER_QUERT = "http://v.juhe.cn/weather/index";
 
 
+    //登陆
+    public static String API_BASE = "http://119.29.14.38:80/XSJX/";
+
+    public static String LOGON = API_BASE + "LogoServlet";
+
 }

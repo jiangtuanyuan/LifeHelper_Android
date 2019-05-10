@@ -8,6 +8,14 @@
 
     <include layout="@layout/toolbar" />
 
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="欢迎您,张三" />
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
