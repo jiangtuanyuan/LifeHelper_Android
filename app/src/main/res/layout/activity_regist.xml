@@ -6,21 +6,7 @@
     android:orientation="vertical">
 
 
-    <ImageView
-        android:id="@+id/iv_top_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:src="@mipmap/logo" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="用   户   登   录 "
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+    <include layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,14 +31,14 @@
                 android:src="@mipmap/ic_login_user" />
 
             <EditText
-                android:id="@+id/user_name"
+                android:id="@+id/et_user_name"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
-                android:hint="请输入您的用户名"
+                android:hint="请输入用户名"
                 android:singleLine="true"
                 android:textColor="@color/white"
                 android:textColorHint="#EFE0E3"
@@ -60,7 +46,7 @@
                 android:textSize="16sp" />
 
             <ImageView
-                android:id="@+id/img_btn_account"
+                android:id="@+id/et_user_name_clear"
                 android:layout_width="28dp"
                 android:layout_height="match_parent"
                 android:scaleType="center"
@@ -68,6 +54,107 @@
                 android:visibility="invisible" />
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#FFD8DD" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/ic_regist_tel" />
+
+            <EditText
+                android:id="@+id/et_tel"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_shape"
+                android:digits="0123456789"
+                android:hint="请输入手机号码"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="#EFE0E3"
+                android:textCursorDrawable="@null"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/et_tel_clear"
+                android:layout_width="28dp"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                android:src="@drawable/ic_close"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="#FFD8DD" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/ic_login_pwd" />
+
+            <EditText
+                android:id="@+id/et_user_pwd1"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_shape"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="#EFE0E3"
+                android:textCursorDrawable="@null"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/et_user_pwd1_cb"
+                android:layout_width="28dp"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:button="@drawable/check_bg"
+                android:gravity="center"
+                android:visibility="invisible" />
+        </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
@@ -92,14 +179,14 @@
                 android:src="@mipmap/ic_login_pwd" />
 
             <EditText
-                android:id="@+id/user_pwd"
+                android:id="@+id/et_user_pwd2"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_shape"
-                android:hint="请输入您的密码"
+                android:hint="确定密码"
                 android:inputType="textPassword"
                 android:maxLength="16"
                 android:singleLine="true"
@@ -109,7 +196,7 @@
                 android:textSize="16sp" />
 
             <CheckBox
-                android:id="@+id/img_btn_pwd"
+                android:id="@+id/et_user_pwd2_cb"
                 android:layout_width="28dp"
                 android:layout_height="match_parent"
                 android:baselineAligned="false"
@@ -117,6 +204,7 @@
                 android:gravity="center"
                 android:visibility="invisible" />
         </LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
@@ -133,31 +221,9 @@
             android:layout_marginTop="40dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/btn_login"
-            android:text="登 录"
+            android:text="注 册"
             android:textColor="@color/main_color"
             android:textSize="18sp" />
 
-
-        <TextView
-            android:id="@+id/tv_regist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="40dp"
-            android:text="注册账号>>"
-            android:textColor="@color/white"
-            android:textSize="13sp" />
-
     </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/tv_version"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:gravity="center"
-        android:textSize="12sp"
-        android:textColor="@color/white" />
 </LinearLayout>

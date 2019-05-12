@@ -11,20 +11,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.orhanobut.logger.Logger;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pers.life.helper.R;
-import pers.life.helper.entity.PostcodeEntity;
 import pers.life.helper.net.API;
 import pers.life.helper.utils.AppUtils;
 import pers.life.helper.utils.EditUtlis;
@@ -32,6 +28,7 @@ import pers.life.helper.utils.SPUtils;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
 import pers.life.helper.view.main.MainActivity;
+import pers.life.helper.view.regist.RegistActivity;
 
 public class LoginActivity extends BaseActivity {
     @BindView(R.id.user_name)
@@ -79,11 +76,13 @@ public class LoginActivity extends BaseActivity {
                 }
                 break;
             case R.id.tv_regist:
+                startActivity(new Intent(this, RegistActivity.class));
                 break;
             default:
                 break;
         }
     }
+
     /**
      * 登陆
      */
@@ -119,6 +118,7 @@ public class LoginActivity extends BaseActivity {
                         }
 
                     }
+
                     @Override
                     public void onError(Response<String> response) {
                         submitBtn.setEnabled(true);

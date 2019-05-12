@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+
 import butterknife.OnClick;
 import pers.life.helper.R;
 import pers.life.helper.entity.PostcodeEntity;
@@ -48,6 +50,8 @@ public class PostcodeActivity extends BaseActivity implements OnRefreshListener,
     Button btQuery;
     @BindView(R.id.tv_sum_data)
     TextView tvSumData;
+    @BindView(R.id.progress)
+    ProgressBar progress;
 
     private PostcodeItemAdapter mPostcodeItemAdapter;
     private List<PostcodeEntity> mSumList = new ArrayList<>();//总数据
@@ -80,6 +84,9 @@ public class PostcodeActivity extends BaseActivity implements OnRefreshListener,
         mPostcodeItemAdapter = new PostcodeItemAdapter(mSumList);
         mPostcodeItemAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);//添加缩放动画效果
         mRecycler.setAdapter(mPostcodeItemAdapter);
+        progress.setVisibility(View.GONE);
+        tvNodata.setVisibility(View.VISIBLE);
+        mRecycler.setVisibility(View.GONE);
     }
 
     /**
@@ -93,11 +100,12 @@ public class PostcodeActivity extends BaseActivity implements OnRefreshListener,
         totalpage = 1;//总页数
         currentpage = 1;//当前第几页
         pagesize = 20;//每页多少条
+
         getInfos();
     }
 
     /**
-     * 下拉加载
+     * 上拉加载
      *
      * @param refreshLayout
      */
@@ -130,6 +138,7 @@ public class PostcodeActivity extends BaseActivity implements OnRefreshListener,
      * 查询
      */
     private void getInfos() {
+        progress.setVisibility(View.VISIBLE);
         btQuery.setEnabled(false);
         OkGo.<String>get(API.POSTCODE_QUERY_URL)
                 .tag(this)
@@ -157,12 +166,18 @@ public class PostcodeActivity extends BaseActivity implements OnRefreshListener,
                                     if (totalcount == 0) {
                                         tvNodata.setVisibility(View.VISIBLE);
                                         mRecycler.setVisibility(View.GONE);
+                                        progress.setVisibility(View.GONE);
                                     } else {
+                                        progress.setVisibility(View.GONE);
                                         tvNodata.setVisibility(View.GONE);
                                         mRecycler.setVisibility(View.VISIBLE);
                                     }
                                     mSumList.clear();
                                 }
+                                progress.setVisibility(View.GONE);
+                                tvNodata.setVisibility(View.GONE);
+                                mRecycler.setVisibility(View.VISIBLE);
+
                                 JSONArray list = result.optJSONArray("list");
                                 PostcodeEntity entity;
                                 Gson gson = new Gson();
@@ -190,8 +205,12 @@ public class PostcodeActivity extends BaseActivity implements OnRefreshListener,
                         refreshLayout.finishRefresh();
                         refreshLayout.finishLoadMore();
                         btQuery.setEnabled(true);
+                        progress.setVisibility(View.GONE);
+                        tvNodata.setVisibility(View.VISIBLE);
+                        mRecycler.setVisibility(View.GONE);
                         ToastUtil.showToast(API.ERROR_STRING);
                     }
                 });
     }
+
 }

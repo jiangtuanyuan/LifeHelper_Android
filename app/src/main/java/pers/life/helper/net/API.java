@@ -31,11 +31,15 @@ public class API {
     public final static String WEATHER_CITYS = "http://v.juhe.cn/weather/citys";
     //天气预报 cityname=城市名字 format=2
     public final static String WEATHER_QUERT = "http://v.juhe.cn/weather/index";
+    //菜谱大全
+    public final static String RECIPE_URL = "http://apis.juhe.cn/cook/query.php";
 
 
     //登陆
     public static String API_BASE = "http://119.29.14.38:80/XSJX/";
 
     public static String LOGON = API_BASE + "LogoServlet";
+
+    public static String REGIST = API_BASE + "AddUserServlet";
 
 }

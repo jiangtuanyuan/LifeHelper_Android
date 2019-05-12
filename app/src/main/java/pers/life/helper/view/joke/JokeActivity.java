@@ -74,6 +74,7 @@ public class JokeActivity extends BaseActivity implements OnRefreshListener, OnL
         mJokeItemAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
         mRecycler.setAdapter(mJokeItemAdapter);
 
+        progress.setVisibility(View.GONE);
         // 开启滑动删除
         ItemDragAndSwipeCallback itemDragAndSwipeCallback = new ItemDragAndSwipeCallback(mJokeItemAdapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemDragAndSwipeCallback);
@@ -131,6 +132,10 @@ public class JokeActivity extends BaseActivity implements OnRefreshListener, OnL
                                         mRecycler.setVisibility(View.GONE);
                                     }
                                 }
+                                progress.setVisibility(View.GONE);
+                                tvNodata.setVisibility(View.GONE);
+                                mRecycler.setVisibility(View.VISIBLE);
+
                                 JokeEntity entity;
                                 Gson gson = new Gson();
                                 for (int i = 0; i < result.length(); i++) {

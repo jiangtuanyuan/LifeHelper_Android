@@ -36,7 +36,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".view.login.LoginActivity"></activity>
+
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -71,6 +71,11 @@
         <activity android:name=".view.card.QueryCardActivity" />
         <activity android:name=".view.weather.WeatherActivity" />
         <activity android:name=".view.joke.JokeActivity" />
+        <activity android:name=".view.recipe.RecipeDetailsActivity" />
+        <activity android:name=".view.recipe.RecipeListActivity" />
+        <activity android:name=".view.login.LoginActivity" />
+        <activity android:name=".view.image.PreviewImageActivity" />
+        <activity android:name=".view.regist.RegistActivity" />
     </application>
 
 </manifest>

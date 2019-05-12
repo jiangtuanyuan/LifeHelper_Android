@@ -41,6 +41,7 @@ import pers.life.helper.view.joke.JokeActivity;
 import pers.life.helper.view.login.LoginActivity;
 import pers.life.helper.view.phone.QueryPhoneActivity;
 import pers.life.helper.view.postcode.PostcodeActivity;
+import pers.life.helper.view.recipe.RecipeListActivity;
 import pers.life.helper.view.weather.WeatherActivity;
 
 public class MainActivity extends BaseActivity {
@@ -120,7 +121,7 @@ public class MainActivity extends BaseActivity {
         IOSDialogUtils.getInstance().showDialogIOS(this, iosDialogBean);
     }
 
-    @OnClick({R.id.tv_tel, R.id.tv_ip, R.id.tv_card, R.id.tv_zip_code, R.id.tv_joke, R.id.tv_weather})
+    @OnClick({R.id.tv_recipe, R.id.tv_tel, R.id.tv_ip, R.id.tv_card, R.id.tv_zip_code, R.id.tv_joke, R.id.tv_weather})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_tel:
@@ -140,6 +141,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_weather:
                 startActivity(new Intent(this, WeatherActivity.class));
+                break;
+            case R.id.tv_recipe://菜谱大全
+                startActivity(new Intent(this, RecipeListActivity.class));
                 break;
             default:
                 break;

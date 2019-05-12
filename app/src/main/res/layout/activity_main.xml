@@ -27,7 +27,7 @@
                 android:id="@+id/tv_tel"
                 style="@style/TextViewStyle"
                 android:drawableTop="@mipmap/ic_main_tel"
-                android:text="手机号码归属地" />
+                android:text="号码归属地" />
 
             <TextView
                 android:id="@+id/tv_ip"
@@ -65,6 +65,18 @@
                 style="@style/TextViewStyle"
                 android:drawableTop="@mipmap/ic_main_joke"
                 android:text="随机笑话" />
+
+        </TableRow>
+
+
+        <TableRow tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/tv_recipe"
+                style="@style/TextViewStyle"
+                android:drawableTop="@mipmap/ic_main_recipe"
+                android:text="菜谱大全" />
+
 
         </TableRow>
 
