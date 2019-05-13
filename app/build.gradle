@@ -31,7 +31,7 @@ android {
         applicationId "pers.life.helper"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 3
+        versionCode 4
         versionName "1." + versionCode
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
