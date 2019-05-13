@@ -34,22 +34,12 @@
                 style="@style/TextViewStyle"
                 android:drawableTop="@mipmap/ic_main_ip"
                 android:text="IP地址" />
-        </TableRow>
-
-        <TableRow tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/tv_card"
                 style="@style/TextViewStyle"
                 android:drawableTop="@mipmap/ic_main_card"
                 android:text="身份证效验" />
-
-            <TextView
-                android:id="@+id/tv_zip_code"
-                style="@style/TextViewStyle"
-                android:drawableTop="@mipmap/ic_main_zip_code"
-                android:text="邮编查询" />
-
         </TableRow>
 
         <TableRow tools:ignore="UselessParent">
@@ -66,6 +56,12 @@
                 android:drawableTop="@mipmap/ic_main_joke"
                 android:text="随机笑话" />
 
+            <TextView
+                android:id="@+id/tv_zip_code"
+                style="@style/TextViewStyle"
+                android:drawableTop="@mipmap/ic_main_zip_code"
+                android:text="邮编查询" />
+
         </TableRow>
 
 
@@ -77,7 +73,17 @@
                 android:drawableTop="@mipmap/ic_main_recipe"
                 android:text="菜谱大全" />
 
+            <TextView
+                android:id="@+id/tv_zhou"
+                style="@style/TextViewStyle"
+                android:drawableTop="@mipmap/ic_main_zhou"
+                android:text="周公解梦" />
 
+            <TextView
+                android:id="@+id/tv_couerier"
+                style="@style/TextViewStyle"
+                android:drawableTop="@mipmap/ic_main_couerier"
+                android:text="快递查询" />
         </TableRow>
 
     </TableLayout>

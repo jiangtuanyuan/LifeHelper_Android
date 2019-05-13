@@ -36,6 +36,8 @@ import pers.life.helper.utils.SPUtils;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
 import pers.life.helper.view.card.QueryCardActivity;
+import pers.life.helper.view.courier.CouerierActivity;
+import pers.life.helper.view.dukeofzhou.ZhouGongActivity;
 import pers.life.helper.view.ip.QueryIPActivity;
 import pers.life.helper.view.joke.JokeActivity;
 import pers.life.helper.view.login.LoginActivity;
@@ -121,7 +123,7 @@ public class MainActivity extends BaseActivity {
         IOSDialogUtils.getInstance().showDialogIOS(this, iosDialogBean);
     }
 
-    @OnClick({R.id.tv_recipe, R.id.tv_tel, R.id.tv_ip, R.id.tv_card, R.id.tv_zip_code, R.id.tv_joke, R.id.tv_weather})
+    @OnClick({R.id.tv_couerier, R.id.tv_zhou, R.id.tv_recipe, R.id.tv_tel, R.id.tv_ip, R.id.tv_card, R.id.tv_zip_code, R.id.tv_joke, R.id.tv_weather})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_tel:
@@ -144,6 +146,12 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_recipe://菜谱大全
                 startActivity(new Intent(this, RecipeListActivity.class));
+                break;
+            case R.id.tv_zhou://周公解梦
+                startActivity(new Intent(this, ZhouGongActivity.class));
+                break;
+            case R.id.tv_couerier://快递查询
+                startActivity(new Intent(this, CouerierActivity.class));
                 break;
             default:
                 break;

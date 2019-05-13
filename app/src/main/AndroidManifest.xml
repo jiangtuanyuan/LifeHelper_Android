@@ -37,7 +37,6 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
 
-
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="8fd357a912a4dce5588074b0a14ad29f" /> <!-- 定位需要的服务 -->
@@ -76,6 +75,11 @@
         <activity android:name=".view.login.LoginActivity" />
         <activity android:name=".view.image.PreviewImageActivity" />
         <activity android:name=".view.regist.RegistActivity" />
+        <activity
+            android:name=".view.courier.ChooseCouerierActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".view.courier.CouerierActivity" />
+        <activity android:name=".view.dukeofzhou.ZhouGongActivity" />
     </application>
 
 </manifest>

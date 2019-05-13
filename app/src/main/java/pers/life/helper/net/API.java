@@ -33,6 +33,10 @@ public class API {
     public final static String WEATHER_QUERT = "http://v.juhe.cn/weather/index";
     //菜谱大全
     public final static String RECIPE_URL = "http://apis.juhe.cn/cook/query.php";
+    //周公解梦
+    public final static String ZHOUGONG_URL = "http://v.juhe.cn/dream/query";
+    //快递查询
+    public final static String COUERIER_URL = "http://v.juhe.cn/exp/index";
 
 
     //登陆
