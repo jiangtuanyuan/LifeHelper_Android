@@ -7,8 +7,6 @@ import java.util.List;
 
 import pers.life.helper.R;
 import pers.life.helper.entity.CouerierData;
-import pers.life.helper.entity.CouerierName;
-import pers.life.helper.utils.ToastUtil;
 
 public class ChooseDataAdapter extends BaseQuickAdapter<CouerierData.ListBean, BaseViewHolder> {
     public ChooseDataAdapter(List<CouerierData.ListBean> data) {

@@ -14,7 +14,7 @@
         android:layout_height="45dp"
         android:layout_margin="40dp"
         android:background="@drawable/shape_ip_et_bg"
-        android:digits="0123456789"
+        android:digits="0123456789xX"
         android:gravity="center_horizontal|center_vertical"
         android:hint="请输入18位身份证号码"
         android:inputType="number"

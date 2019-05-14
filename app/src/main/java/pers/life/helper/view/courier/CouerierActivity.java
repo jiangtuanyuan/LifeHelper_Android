@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -23,24 +22,20 @@ import com.lzy.okgo.model.Response;
 import com.orhanobut.logger.Logger;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pers.life.helper.R;
 import pers.life.helper.entity.CouerierData;
 import pers.life.helper.entity.CouerierName;
-import pers.life.helper.entity.RecipeEntity;
 import pers.life.helper.net.API;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
 import pers.life.helper.view.courier.adapter.ChooseDataAdapter;
-import pers.life.helper.view.recipe.adapter.RecipeLiseAdapter;
 
 public class CouerierActivity extends BaseActivity {
     @BindView(R.id.toolbar)
