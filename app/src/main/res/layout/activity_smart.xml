@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.smart.SmartActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TableRow tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/tv_text"
+                style="@style/TextViewStyle"
+                android:text="AI-文本识别" />
+        </TableRow>
+
+
+        <TableRow tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/tv_plant"
+                style="@style/TextViewStyle"
+                android:text="AI-植物识别" />
+        </TableRow>
+
+
+        <TableRow tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/tv_animal"
+                style="@style/TextViewStyle"
+                android:text="AI-动物识别" />
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>

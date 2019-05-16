@@ -70,4 +70,12 @@
             <enum name="invisible" value="1" />
         </attr>
     </declare-styleable>
+
+    <style name="result_pop_scroll">
+        <item name="android:background">@color/white</item>
+    </style>
+    <style name="result_pop_scrollinner">
+        <item name="android:padding">2dp</item>
+        <item name="android:rowHeight">12dp</item>
+    </style>
 </resources>

@@ -86,5 +86,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     //图片缩放框架
     implementation 'com.bm.photoview:library:1.4.1'
+    //文本识别
+    implementation files('libs/ocr-sdk.jar')
+    implementation project(path: ':ocr_ui')
 
 }

@@ -84,7 +84,16 @@
                 style="@style/TextViewStyle"
                 android:drawableTop="@mipmap/ic_main_couerier"
                 android:text="快递查询" />
+
         </TableRow>
 
+
+        <TableRow tools:ignore="UselessParent">
+            <TextView
+                android:id="@+id/tv_smart"
+                style="@style/TextViewStyle"
+                android:drawableTop="@mipmap/ic_main_smart"
+                android:text="AI识别" />
+        </TableRow>
     </TableLayout>
 </LinearLayout>
