@@ -3,12 +3,15 @@ package pers.life.helper.view.smart.plant;
 import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
@@ -46,11 +49,10 @@ public class PlantMainActivity extends BaseActivity {
     TextView tvProgress;
     @BindView(R.id.viewPager)
     ViewPager mViewPager;
-
     private List<PlantAnimalResult.ResultBean> mSumList = new ArrayList<>();//总数据
     private ShadowTransformer mCardShadowTransformer;
     private FlowerCardPagerAdapter flowerCardPagerAdapter;
-
+    private boolean mIsScrolled;
     @Override
     protected int setLayoutResourceID() {
         return R.layout.activity_plant_main;
@@ -61,10 +63,43 @@ public class PlantMainActivity extends BaseActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void initViews(Bundle savedInstanceState) {
         initToolbarNav();
         setTitle("植物识别");
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                switch (state) {
+                    case ViewPager.SCROLL_STATE_DRAGGING:
+                        mIsScrolled = false;
+                        break;
+                    case ViewPager.SCROLL_STATE_SETTLING:
+
+                        mIsScrolled = true;
+
+                        break;
+                    case ViewPager.SCROLL_STATE_IDLE:
+                        if (!mIsScrolled) {
+                            //最后一页
+                            ToastUtil.showToast("已经是最后一个了！");
+                        }
+                        mIsScrolled = true;
+                        break;
+                }
+            }
+        });
     }
 
     @OnClick({R.id.ll_add_image, R.id.iv_image})
@@ -136,6 +171,7 @@ public class PlantMainActivity extends BaseActivity {
                                     mViewPager.setAdapter(flowerCardPagerAdapter);
                                     mViewPager.setPageTransformer(false, mCardShadowTransformer);
                                     mViewPager.setOffscreenPageLimit(result.getResult().size());
+
 
                                 }
 

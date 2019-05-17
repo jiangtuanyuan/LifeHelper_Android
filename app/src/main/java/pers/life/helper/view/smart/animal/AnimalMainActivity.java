@@ -49,6 +49,7 @@ public class AnimalMainActivity extends BaseActivity {
     private List<PlantAnimalResult.ResultBean> mSumList = new ArrayList<>();//总数据
     private ShadowTransformer mCardShadowTransformer;
     private FlowerCardPagerAdapter flowerCardPagerAdapter;
+    private boolean mIsScrolled;
 
     @Override
     protected int setLayoutResourceID() {
@@ -64,6 +65,39 @@ public class AnimalMainActivity extends BaseActivity {
     protected void initViews(Bundle savedInstanceState) {
         initToolbarNav();
         setTitle("动物识别");
+
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                switch (state) {
+                    case ViewPager.SCROLL_STATE_DRAGGING:
+                        mIsScrolled = false;
+                        break;
+                    case ViewPager.SCROLL_STATE_SETTLING:
+
+                        mIsScrolled = true;
+
+                        break;
+                    case ViewPager.SCROLL_STATE_IDLE:
+                        if (!mIsScrolled) {
+                            //最后一页
+                            ToastUtil.showToast("已经是最后一个了！");
+                        }
+                        mIsScrolled = true;
+                        break;
+                }
+            }
+        });
     }
 
     @OnClick({R.id.ll_add_image, R.id.iv_image})
