@@ -19,10 +19,12 @@ import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.graphics.YuvImage;
 import android.hardware.Camera;
-import android.support.v4.app.ActivityCompat;
+
 import android.view.TextureView;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import androidx.core.app.ActivityCompat;
 
 /**
  * 5.0以下相机API的封装。

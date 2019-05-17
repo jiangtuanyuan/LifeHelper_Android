@@ -4,15 +4,16 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
@@ -28,15 +29,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import io.reactivex.functions.Consumer;
 import pers.life.helper.R;
 import pers.life.helper.entity.CouerierName;
 import pers.life.helper.utils.EditUtlis;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
 import pers.life.helper.view.courier.adapter.ChooseNameAdapter;
-import pers.life.helper.view.recipe.adapter.RecipeLiseAdapter;
 
 public class ChooseCouerierActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener, ChooseNameAdapter.ItemClickListener {
     @BindView(R.id.toolbar)

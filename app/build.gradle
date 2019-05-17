@@ -50,6 +50,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -89,5 +91,8 @@ dependencies {
     //文本识别
     implementation files('libs/ocr-sdk.jar')
     implementation project(path: ':ocr_ui')
-
+    //图片裁剪库
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    //Java-SDK-AI-baidu
+    implementation 'com.baidu.aip:java-sdk:4.11.0'
 }

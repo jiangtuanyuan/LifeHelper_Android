@@ -28,6 +28,7 @@
     <application
         android:name=".app.MyApp"
         android:allowBackup="true"
+        android:appComponentFactory="@string/app_name"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
@@ -35,7 +36,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:targetApi="n">
+        tools:replace="android:appComponentFactory"
+        tools:targetApi="p">
 
 
         <meta-data
@@ -44,7 +46,7 @@
         <service android:name="com.amap.api.location.APSService" />
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="pers.life.helper.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -62,28 +64,72 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.main.MainActivity" />
-        <activity android:name=".view.phone.QueryPhoneActivity" />
-        <activity android:name=".view.ip.QueryIPActivity" />
+        <activity
+            android:name=".view.main.MainActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.phone.QueryPhoneActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.ip.QueryIPActivity"
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name=".view.postcode.PostcodeActivity"
+            android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".view.card.QueryCardActivity" />
-        <activity android:name=".view.weather.WeatherActivity" />
-        <activity android:name=".view.joke.JokeActivity" />
-        <activity android:name=".view.recipe.RecipeDetailsActivity" />
-        <activity android:name=".view.recipe.RecipeListActivity" />
-        <activity android:name=".view.login.LoginActivity" />
-        <activity android:name=".view.image.PreviewImageActivity" />
-        <activity android:name=".view.regist.RegistActivity" />
+        <activity
+            android:name=".view.card.QueryCardActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.weather.WeatherActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.joke.JokeActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.recipe.RecipeDetailsActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.recipe.RecipeListActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.login.LoginActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.image.PreviewImageActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.regist.RegistActivity"
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name=".view.courier.ChooseCouerierActivity"
+            android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".view.courier.CouerierActivity" />
-        <activity android:name=".view.dukeofzhou.ZhouGongActivity" />
-        <activity android:name=".view.smart.text.TextMainActivity"/>
-        <activity android:name=".view.smart.text.IDCardActivity"/>
-        <activity android:name=".view.smart.SmartActivity" />
+        <activity
+            android:name=".view.courier.CouerierActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.dukeofzhou.ZhouGongActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.smart.text.TextMainActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.smart.text.IDCardActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.smart.SmartActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/CropperAppTheme" />
+        <activity
+            android:name=".view.smart.plant.PlantMainActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.smart.animal.AnimalMainActivity"
+            android:configChanges="orientation|screenSize" />
     </application>
 
 </manifest>

@@ -2,10 +2,11 @@ package pers.life.helper.view.smart;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
+
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.baidu.ocr.sdk.OCR;
 import com.baidu.ocr.sdk.OnResultListener;
@@ -20,6 +21,8 @@ import pers.life.helper.utils.AppUtils;
 import pers.life.helper.utils.FileUtil;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
+import pers.life.helper.view.smart.animal.AnimalMainActivity;
+import pers.life.helper.view.smart.plant.PlantMainActivity;
 import pers.life.helper.view.smart.text.TextMainActivity;
 
 public class SmartActivity extends BaseActivity {
@@ -33,6 +36,7 @@ public class SmartActivity extends BaseActivity {
     TextView tvPlant;
     @BindView(R.id.tv_animal)
     TextView tvAnimal;
+
     @Override
     protected int setLayoutResourceID() {
         return R.layout.activity_smart;
@@ -57,9 +61,11 @@ public class SmartActivity extends BaseActivity {
             case R.id.tv_text://文本
                 startActivity(new Intent(this, TextMainActivity.class));
                 break;
-            case R.id.tv_plant://植物
+            case R.id.tv_plant://植物识别
+                startActivity(new Intent(this, PlantMainActivity.class));
                 break;
-            case R.id.tv_animal://动物
+            case R.id.tv_animal://动物识别
+                startActivity(new Intent(this, AnimalMainActivity.class));
                 break;
             default:
                 break;

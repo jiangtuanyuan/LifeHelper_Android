@@ -1,9 +1,24 @@
-/*
- * Copyright (C) 2017 Baidu, Inc. All Rights Reserved.
- */
+
 package pers.life.helper.view.smart.text;
 
-import java.io.File;
+import android.Manifest;
+import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 
 import com.baidu.ocr.sdk.OCR;
 import com.baidu.ocr.sdk.OnResultListener;
@@ -13,35 +28,31 @@ import com.baidu.ocr.sdk.model.IDCardResult;
 import com.baidu.ocr.ui.camera.CameraActivity;
 import com.baidu.ocr.ui.camera.CameraNativeHelper;
 import com.baidu.ocr.ui.camera.CameraView;
+import com.google.gson.Gson;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.TextView;
+import java.io.File;
 
 import pers.life.helper.R;
 import pers.life.helper.utils.FileUtil;
+import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
 
 public class IDCardActivity extends BaseActivity {
-
     private static final int REQUEST_CODE_PICK_IMAGE_FRONT = 201;
     private static final int REQUEST_CODE_PICK_IMAGE_BACK = 202;
     private static final int REQUEST_CODE_CAMERA = 102;
-
     private TextView infoTextView;
     private AlertDialog.Builder alertDialog;
+    private int carzf = 1;
+    @Override
+    protected int setLayoutResourceID() {
+        return R.layout.activity_idcard;
+    }
 
+    @Override
+    protected void initVariables() {
+
+    }
     private boolean checkGalleryPermission() {
         int ret = ActivityCompat.checkSelfPermission(IDCardActivity.this, Manifest.permission
                 .READ_EXTERNAL_STORAGE);
@@ -53,8 +64,6 @@ public class IDCardActivity extends BaseActivity {
         }
         return true;
     }
-
-
     @Override
     protected void initViews(Bundle savedInstanceState) {
         initToolbarNav();
@@ -112,6 +121,7 @@ public class IDCardActivity extends BaseActivity {
         findViewById(R.id.id_card_front_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                carzf = 1;
                 Intent intent = new Intent(IDCardActivity.this, CameraActivity.class);
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                         FileUtil.getSaveFile(getApplication()).getAbsolutePath());
@@ -143,6 +153,7 @@ public class IDCardActivity extends BaseActivity {
         findViewById(R.id.id_card_back_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                carzf = 2;
                 Intent intent = new Intent(IDCardActivity.this, CameraActivity.class);
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                         FileUtil.getSaveFile(getApplication()).getAbsolutePath());
@@ -185,13 +196,38 @@ public class IDCardActivity extends BaseActivity {
             @Override
             public void onResult(IDCardResult result) {
                 if (result != null) {
-                    alertText("", result.toString());
+                    if (carzf == 1) {
+                        //正面
+                        StringBuffer stringBuffer = new StringBuffer();
+                        stringBuffer.append("姓名:" + result.getName());
+                        stringBuffer.append("\n");
+                        stringBuffer.append("身份证号码:" + result.getIdNumber());
+                        stringBuffer.append("\n");
+                        stringBuffer.append("性别:" + result.getGender());
+                        stringBuffer.append("\n");
+                        stringBuffer.append("民族:" + result.getEthnic());
+                        stringBuffer.append("\n");
+                        stringBuffer.append("出生年月:" + result.getBirthday());
+                        stringBuffer.append("\n");
+                        stringBuffer.append("住址:" + result.getAddress());
+                        stringBuffer.append("\n");
+                        alertText("识别成功", stringBuffer.toString());
+                    }
+                    if (carzf == 2) {
+                        //反面
+                        StringBuffer stringBuffer = new StringBuffer();
+                        stringBuffer.append("签发机关:" + result.getIssueAuthority());
+                        stringBuffer.append("\n");
+                        stringBuffer.append("有效期限:" + result.getSignDate() + "-" + result.getExpiryDate());
+                        stringBuffer.append("\n");
+                        alertText("识别成功", stringBuffer.toString());
+                    }
                 }
             }
 
             @Override
             public void onError(OCRError error) {
-                alertText("", error.getMessage());
+                alertText("[识别失败]", error.getMessage());
             }
         });
     }
@@ -199,6 +235,9 @@ public class IDCardActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            showProgressDialog("识别中..");
+        }
         if (requestCode == REQUEST_CODE_PICK_IMAGE_FRONT && resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
             String filePath = getRealPathFromURI(uri);
@@ -226,13 +265,25 @@ public class IDCardActivity extends BaseActivity {
         }
     }
 
+    private Gson gson;
+
     private void alertText(final String title, final String message) {
+        if (gson == null) {
+            gson = new Gson();
+        }
+        closeProgressDialog();
+        ClipboardManager cm = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 alertDialog.setTitle(title)
                         .setMessage(message)
-                        .setPositiveButton("确定", null)
+                        .setNegativeButton("取消", null)
+                        .setPositiveButton("复制", (dialog, which) -> {
+                            ClipData mClipData = ClipData.newPlainText("message", message);
+                            cm.setPrimaryClip(mClipData);
+                            ToastUtil.showToast("复制成功！");
+                        })
                         .show();
             }
         });
@@ -259,14 +310,5 @@ public class IDCardActivity extends BaseActivity {
         super.onDestroy();
     }
 
-    @Override
-    protected int setLayoutResourceID() {
-        return R.layout.activity_idcard;
-    }
-
-    @Override
-    protected void initVariables() {
-
-    }
 
 }

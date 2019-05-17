@@ -9,143 +9,58 @@
 
     <include layout="@layout/toolbar" />
 
-    <ScrollView
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
+        <TableRow
+            android:gravity="center_vertical"
+            tools:ignore="UselessParent">
 
-            <TableRow
-                android:gravity="center_vertical"
-                tools:ignore="UselessParent">
+            <TextView
+                android:id="@+id/tv_text"
+                style="@style/TextViewStyle"
+                android:text="普通文本识别" />
 
-                <TextView
-                    android:id="@+id/tv_1"
-                    style="@style/TextViewStyle"
-                    android:text="普通文本识别" />
+        </TableRow>
 
-                <TextView
-                    android:id="@+id/tv_2"
-                    style="@style/TextViewStyle"
-                    android:text="高精度文本识别" />
+        <TableRow
+            android:gravity="center_vertical"
+            tools:ignore="UselessParent">
 
-                <TextView
-                    android:id="@+id/tv_3"
-                    style="@style/TextViewStyle"
-                    android:text="含位置信息识别" />
+            <TextView
+                android:id="@+id/tv_card"
+                style="@style/TextViewStyle"
+                android:text="身份证识别" />
 
-                <TextView
-                    android:id="@+id/tv_4"
-                    style="@style/TextViewStyle"
-                    android:text="高精度含位置信息识别" />
-            </TableRow>
+            <TextView
+                android:id="@+id/tv_banck"
+                style="@style/TextViewStyle"
+                android:text="银行卡识别" />
+        </TableRow>
 
+        <TableRow
+            android:gravity="center_vertical"
+            tools:ignore="UselessParent">
 
-            <TableRow
-                android:gravity="center_vertical"
-                tools:ignore="UselessParent">
+            <TextView
+                android:id="@+id/tv_driving_licence"
+                style="@style/TextViewStyle"
+                android:text="驾驶证识别" />
 
-                <TextView
-                    android:id="@+id/tv_5"
-                    style="@style/TextViewStyle"
-                    android:text="含生僻字文本识别" />
+            <TextView
+                android:id="@+id/tv_car_plate"
+                style="@style/TextViewStyle"
+                android:text="车牌识别" />
+        </TableRow>
+    </TableLayout>
 
-                <TextView
-                    android:id="@+id/tv_6"
-                    style="@style/TextViewStyle"
-                    android:text="网络图片识别" />
-
-                <TextView
-                    android:id="@+id/tv_7"
-                    style="@style/TextViewStyle"
-                    android:text="身份证识别" />
-
-                <TextView
-                    android:id="@+id/tv_8"
-                    style="@style/TextViewStyle"
-                    android:text="银行卡识别" />
-            </TableRow>
-
-
-            <TableRow
-                android:gravity="center_vertical"
-                tools:ignore="UselessParent">
-
-                <TextView
-                    android:id="@+id/tv_9"
-                    style="@style/TextViewStyle"
-                    android:text="行驶证识别" />
-
-                <TextView
-                    android:id="@+id/tv_10"
-                    style="@style/TextViewStyle"
-                    android:text="驾驶证识别" />
-
-                <TextView
-                    android:id="@+id/tv_11"
-                    style="@style/TextViewStyle"
-                    android:text="车牌识别" />
-
-                <TextView
-                    android:id="@+id/tv_12"
-                    style="@style/TextViewStyle"
-                    android:text="营业执照识别" />
-            </TableRow>
-
-
-            <TableRow
-                android:gravity="center_vertical"
-                tools:ignore="UselessParent">
-
-                <TextView
-                    android:id="@+id/tv_13"
-                    style="@style/TextViewStyle"
-                    android:text="通用票据识别" />
-
-                <TextView
-                    android:id="@+id/tv_14"
-                    style="@style/TextViewStyle"
-                    android:text="护照识别" />
-
-                <TextView
-                    android:id="@+id/tv_15"
-                    style="@style/TextViewStyle"
-                    android:text="二维码识别" />
-
-                <TextView
-                    android:id="@+id/tv_16"
-                    style="@style/TextViewStyle"
-                    android:text="数字识别" />
-            </TableRow>
-
-
-            <TableRow
-                android:gravity="center_vertical"
-                tools:ignore="UselessParent">
-
-                <TextView
-                    android:id="@+id/tv_17"
-                    style="@style/TextViewStyle"
-                    android:text="名片识别" />
-
-                <TextView
-                    android:id="@+id/tv_18"
-                    style="@style/TextViewStyle"
-                    android:text="增值税发票识别" />
-
-                <TextView
-                    android:id="@+id/tv_19"
-                    style="@style/TextViewStyle"
-                    android:text="彩票识别" />
-
-                <TextView
-                    android:id="@+id/tv_20"
-                    style="@style/TextViewStyle"
-                    android:text="手写识别" />
-            </TableRow>
-        </TableLayout>
-    </ScrollView>
+    <TextView
+        android:id="@+id/tv_init_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:visibility="invisible" />
 </LinearLayout>

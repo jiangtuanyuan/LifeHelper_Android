@@ -3,10 +3,6 @@
  */
 package com.baidu.ocr.ui.camera;
 
-import java.io.File;
-
-import com.baidu.ocr.ui.R;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,11 +13,16 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.IntDef;
-import android.support.annotation.RequiresApi;
-import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.IntDef;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.res.ResourcesCompat;
+
+import com.baidu.ocr.ui.R;
+
+import java.io.File;
 
 @SuppressWarnings("unused")
 public class MaskView extends View {

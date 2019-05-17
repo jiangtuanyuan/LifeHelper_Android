@@ -73,7 +73,7 @@ public class AppUpdate {
      * 下载APK
      */
     private static void showDownloadDialog(Context mContext) {
-        final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(mContext);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.dialog_down, null);
         final TextView downStatus = (TextView) view.findViewById(R.id.down_status);
@@ -87,7 +87,7 @@ public class AppUpdate {
         builder.setView(view);
         builder.setCancelable(false);
         builder.create();
-        final android.support.v7.app.AlertDialog alertDialog = builder.show();
+        final AlertDialog alertDialog = builder.show();
         OkGo.<File>get(API.APP_UPDATE_APK_URL)
                 .tag(mContext)
                 .execute(new FileCallback(AppUtils.getFileName(API.APP_UPDATE_APK_URL)) {

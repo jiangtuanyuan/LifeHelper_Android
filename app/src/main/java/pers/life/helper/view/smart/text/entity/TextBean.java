@@ -1,4 +1,4 @@
-package pers.life.helper.view.smart.text;
+package pers.life.helper.view.smart.text.entity;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -12,11 +12,13 @@ import java.util.List;
 
 public class TextBean {
     /**
-     * log_id : 779810327213417456
-     * words_result_num : 5
-     * words_result : [{"location":{"width":41,"top":113,"left":296,"height":42},"words":"9"},{"location":{"width":55,"top":120,"left":132,"height":205},"words":"8↑5"},{"location":{"width":42,"top":260,"left":305,"height":45},"words":"6"},{"location":{"width":41,"top":442,"left":161,"height":50},"words":"2"},{"location":{"width":70,"top":407,"left":315,"height":70},"words":"3"}]
+     * log_id : 5937116452458251601
+     * direction : 0
+     * words_result_num : 11
+     * words_result : [{"words":"组长会议"},{"words":"绩效统计原则"},{"words":"1、每个月月底,以周为单位,列出本组下个月的计划任务安排"},{"words":"需列可预见的,可量化的工作,不可预见的和无法量化的暂时不"},{"words":"进来"},{"words":"2.每个月月头,统计本组所有成员在上个月从第一天到最后"},{"words":"实际完成的任务并折算成对应的金币数量(四舍五入保留整数位"},{"words":"如有不能在一个月之内全部完成的功能,套用定额再*完成比例"},{"words":"每个专业都是完整的100%;完成静态代码(前端完成U界"},{"words":"后端完成接口编写):33%、完成功能数据对接:33%、完成整体"},{"words":"并成功上线:34%"}]
      */
     private long log_id;
+    private int direction;
     private int words_result_num;
     private List<WordsResultBean> words_result;
 
@@ -72,6 +74,14 @@ public class TextBean {
         this.log_id = log_id;
     }
 
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
     public int getWords_result_num() {
         return words_result_num;
     }
@@ -90,11 +100,9 @@ public class TextBean {
 
     public static class WordsResultBean {
         /**
-         * location : {"width":41,"top":113,"left":296,"height":42}
-         * words : 9
+         * words : 组长会议
          */
 
-        private LocationBean location;
         private String words;
 
         public static WordsResultBean objectFromData(String str) {
@@ -141,108 +149,12 @@ public class TextBean {
 
         }
 
-        public LocationBean getLocation() {
-            return location;
-        }
-
-        public void setLocation(LocationBean location) {
-            this.location = location;
-        }
-
         public String getWords() {
             return words;
         }
 
         public void setWords(String words) {
             this.words = words;
-        }
-
-        public static class LocationBean {
-            /**
-             * width : 41
-             * top : 113
-             * left : 296
-             * height : 42
-             */
-
-            private int width;
-            private int top;
-            private int left;
-            private int height;
-
-            public static LocationBean objectFromData(String str) {
-
-                return new Gson().fromJson(str, LocationBean.class);
-            }
-
-            public static LocationBean objectFromData(String str, String key) {
-
-                try {
-                    JSONObject jsonObject = new JSONObject(str);
-
-                    return new Gson().fromJson(jsonObject.getString(str), LocationBean.class);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                return null;
-            }
-
-            public static List<LocationBean> arrayLocationBeanFromData(String str) {
-
-                Type listType = new TypeToken<ArrayList<LocationBean>>() {
-                }.getType();
-
-                return new Gson().fromJson(str, listType);
-            }
-
-            public static List<LocationBean> arrayLocationBeanFromData(String str, String key) {
-
-                try {
-                    JSONObject jsonObject = new JSONObject(str);
-                    Type listType = new TypeToken<ArrayList<LocationBean>>() {
-                    }.getType();
-
-                    return new Gson().fromJson(jsonObject.getString(str), listType);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                return new ArrayList();
-            }
-
-            public int getWidth() {
-                return width;
-            }
-
-            public void setWidth(int width) {
-                this.width = width;
-            }
-
-            public int getTop() {
-                return top;
-            }
-
-            public void setTop(int top) {
-                this.top = top;
-            }
-
-            public int getLeft() {
-                return left;
-            }
-
-            public void setLeft(int left) {
-                this.left = left;
-            }
-
-            public int getHeight() {
-                return height;
-            }
-
-            public void setHeight(int height) {
-                this.height = height;
-            }
         }
     }
 }

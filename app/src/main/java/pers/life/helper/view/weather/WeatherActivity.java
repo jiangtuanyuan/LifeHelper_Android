@@ -5,17 +5,18 @@ import android.annotation.SuppressLint;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.amap.api.location.AMapLocation;
 import com.google.gson.Gson;
@@ -34,16 +35,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pers.life.helper.R;
-import pers.life.helper.entity.JokeEntity;
 import pers.life.helper.entity.WeatherEntity;
 import pers.life.helper.net.API;
 import pers.life.helper.utils.LocationAmpUtils;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
-import pers.life.helper.view.joke.JokeItemAdapter;
 
 public class WeatherActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener, LocationAmpUtils.LocationListener, OnRefreshListener, QueryCityNameDialog.OnCityNameOk {
     @BindView(R.id.toolbar)
@@ -119,6 +117,7 @@ public class WeatherActivity extends BaseActivity implements Toolbar.OnMenuItemC
 
     @Override
     protected void initVariables() {
+
 
     }
 

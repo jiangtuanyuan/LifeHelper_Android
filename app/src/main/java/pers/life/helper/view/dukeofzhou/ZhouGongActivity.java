@@ -1,14 +1,15 @@
 package pers.life.helper.view.dukeofzhou;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
@@ -21,9 +22,6 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,6 @@ import butterknife.OnClick;
 import pers.life.helper.R;
 import pers.life.helper.entity.ZhouGongEntity;
 import pers.life.helper.net.API;
-import pers.life.helper.utils.LogUtil;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
 

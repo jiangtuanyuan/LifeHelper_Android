@@ -28,8 +28,10 @@
         android:id="@+id/id_card_front_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="@drawable/btn_login"
-        android:text="身份证正面"
+        android:text="身份证正面识别"
+        android:textColor="@color/main_color"
         tools:ignore="HardcodedText" />
 
     <Button
@@ -44,9 +46,10 @@
         android:id="@+id/id_card_back_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="10dp"
         android:background="@drawable/btn_login"
-        android:text="身份证反面"
+        android:text="身份证反面识别"
+        android:textColor="@color/main_color"
         tools:ignore="HardcodedText" />
 
     <Button
@@ -60,6 +63,7 @@
     <TextView
         android:id="@+id/info_text_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>

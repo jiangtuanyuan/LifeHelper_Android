@@ -14,10 +14,11 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.support.v4.content.FileProvider;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
+
+import androidx.core.content.FileProvider;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 

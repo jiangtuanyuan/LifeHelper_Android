@@ -1,11 +1,12 @@
 package pers.life.helper.utils;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewImplementsContextMenu extends RecyclerView {
     private AdapterView.AdapterContextMenuInfo contextMenuInfo;

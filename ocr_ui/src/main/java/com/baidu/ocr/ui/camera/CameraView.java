@@ -3,27 +3,15 @@
  */
 package com.baidu.ocr.ui.camera;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import com.baidu.idcardquality.IDcardQualityProcess;
-import com.baidu.ocr.ui.R;
-import com.baidu.ocr.ui.util.DimensionUtil;
-import com.baidu.ocr.ui.util.ImageUtil;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapRegionDecoder;
 import android.graphics.Color;
-import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Rect;
-import android.media.ImageReader;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.IntDef;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -32,6 +20,17 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.IntDef;
+
+import com.baidu.idcardquality.IDcardQualityProcess;
+import com.baidu.ocr.ui.R;
+import com.baidu.ocr.ui.util.DimensionUtil;
+import com.baidu.ocr.ui.util.ImageUtil;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * 负责，相机的管理。同时提供，裁剪遮罩功能。

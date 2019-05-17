@@ -3,25 +3,21 @@ package pers.life.helper.view.recipe;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.bumptech.glide.Glide;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import pers.life.helper.R;
 import pers.life.helper.entity.RecipeEntity;
 import pers.life.helper.utils.GlideRequestOptions;
-import pers.life.helper.utils.LogUtil;
 import pers.life.helper.utils.RecyclerViewImplementsContextMenu;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
