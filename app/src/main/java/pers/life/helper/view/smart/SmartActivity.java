@@ -13,10 +13,21 @@ import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
 import com.baidu.ocr.sdk.model.AccessToken;
 import com.baidu.ocr.ui.camera.CameraActivity;
+import com.google.gson.Gson;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
+import com.orhanobut.logger.Logger;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import pers.life.helper.R;
+import pers.life.helper.entity.PostcodeEntity;
+import pers.life.helper.entity.Quanxian;
+import pers.life.helper.net.API;
 import pers.life.helper.utils.AppUtils;
 import pers.life.helper.utils.FileUtil;
 import pers.life.helper.utils.ToastUtil;
@@ -37,6 +48,8 @@ public class SmartActivity extends BaseActivity {
     @BindView(R.id.tv_animal)
     TextView tvAnimal;
 
+    private Quanxian mQuanxian;
+
     @Override
     protected int setLayoutResourceID() {
         return R.layout.activity_smart;
@@ -52,6 +65,8 @@ public class SmartActivity extends BaseActivity {
         initToolbarNav();
         setTitle("智能识别");
         //重新获取相机权限
+        showProgressDialog("加载中..");
+        getQuanxian();
         AppUtils.checkPermissions(this);
     }
 
@@ -59,16 +74,83 @@ public class SmartActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_text://文本
-                startActivity(new Intent(this, TextMainActivity.class));
+                if (mQuanxian == null) {
+                    ToastUtil.showToast("请等待加载完成..");
+                } else {
+                    if (mQuanxian.getText() == 1) {
+                        startActivity(new Intent(this, TextMainActivity.class));
+                    } else {
+                        ToastUtil.showToast("权限拒绝!");
+                    }
+                }
                 break;
             case R.id.tv_plant://植物识别
-                startActivity(new Intent(this, PlantMainActivity.class));
+                if (mQuanxian == null) {
+                    ToastUtil.showToast("请等待加载完成..");
+                } else {
+                    if (mQuanxian.getPlant() == 1) {
+                        startActivity(new Intent(this, PlantMainActivity.class));
+                    } else {
+                        ToastUtil.showToast("权限拒绝!");
+                    }
+                }
                 break;
             case R.id.tv_animal://动物识别
-                startActivity(new Intent(this, AnimalMainActivity.class));
+                if (mQuanxian == null) {
+                    ToastUtil.showToast("请等待加载完成..");
+                } else {
+                    if (mQuanxian.getAnima() == 1) {
+                        startActivity(new Intent(this, AnimalMainActivity.class));
+                    } else {
+                        ToastUtil.showToast("权限拒绝!");
+                    }
+                }
                 break;
             default:
                 break;
         }
     }
+
+    private void getQuanxian() {
+        OkGo.<String>get(API.APP_QUANXIAN)
+                .tag(this)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        closeProgressDialog();
+                        try {
+                            Gson gson = new Gson();
+                            mQuanxian = gson.fromJson(response.body(), Quanxian.class);
+                            if (mQuanxian.getText() == 1) {
+                                tvText.setTextColor(getResources().getColor(R.color.main_color));
+                            } else {
+                                tvText.setTextColor(getResources().getColor(R.color.font_color));
+                            }
+
+                            if (mQuanxian.getPlant() == 1) {
+                                tvPlant.setTextColor(getResources().getColor(R.color.main_color));
+                            } else {
+                                tvPlant.setTextColor(getResources().getColor(R.color.font_color));
+                            }
+
+                            if (mQuanxian.getAnima() == 1) {
+                                tvAnimal.setTextColor(getResources().getColor(R.color.main_color));
+                            } else {
+                                tvAnimal.setTextColor(getResources().getColor(R.color.font_color));
+                            }
+
+                        } catch (Exception s) {
+                            s.printStackTrace();
+                            mQuanxian = null;
+                        }
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        closeProgressDialog();
+                    }
+                });
+
+    }
+
 }

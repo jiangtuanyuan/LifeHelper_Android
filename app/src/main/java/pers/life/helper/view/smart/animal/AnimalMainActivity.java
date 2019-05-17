@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
@@ -30,8 +29,8 @@ import pers.life.helper.utils.AipImageUtils;
 import pers.life.helper.utils.FileUtils;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
-import pers.life.helper.view.smart.plant.entity.PlantAnimalResult;
 import pers.life.helper.view.smart.plant.adapter.FlowerCardPagerAdapter;
+import pers.life.helper.view.smart.plant.entity.PlantAnimalResult;
 import pers.life.helper.view.smart.plant.view.ShadowTransformer;
 
 public class AnimalMainActivity extends BaseActivity {
