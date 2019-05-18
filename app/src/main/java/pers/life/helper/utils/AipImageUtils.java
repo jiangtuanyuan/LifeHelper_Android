@@ -1,7 +1,10 @@
 package pers.life.helper.utils;
 
+import android.annotation.SuppressLint;
+
 import com.baidu.aip.imageclassify.AipImageClassify;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.orhanobut.logger.Logger;
 
@@ -15,8 +18,10 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import pers.life.helper.view.smart.plant.entity.CarResult;
 import pers.life.helper.view.smart.plant.entity.PlantAnimalResult;
 
 /**
@@ -24,13 +29,29 @@ import pers.life.helper.view.smart.plant.entity.PlantAnimalResult;
  * 百度图像识别工具类
  */
 public class AipImageUtils {
+    /**
+     * APP_ID
+     */
     private final String APP_ID = "16268450";
+    /**
+     * API_KEY
+     */
     private final String API_KEY = "rijYHVoqoRurnqnQfoEKDKnD";
+    /**
+     * SECRET_KEY
+     */
     private final String SECRET_KEY = "DDP8EUbvXEHBFndTcweaOT6u6yGybGR1";
+    /**
+     * 单例
+     */
     private final AipImageClassify mAipImageClassify;
+    /**
+     * Gson 对象
+     */
     private Gson gson;
 
     private AipImageUtils() {
+        LogUtil.e("AipImageUtils", "--初始化--AipImageUtils()");
         mAipImageClassify = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
         mAipImageClassify.setConnectionTimeoutInMillis(6000);
         mAipImageClassify.setSocketTimeoutInMillis(60000);
@@ -53,23 +74,21 @@ public class AipImageUtils {
      * @param baikeNum   返回百度百科的查询数量
      * @return
      */
-    public void PlantDetect(String image_path, int baikeNum, OnResults mOnResults) {
+    public void PlantDetect(String image_path, int baikeNum, OnResults mOnResults, CompositeDisposable mDisposable) {
         if (checkAIPImageStatus()) {
             mOnResults.OnError("初始化失败!");
         } else {
             HashMap<String, String> options = new HashMap<>();
             options.put("baike_num", String.valueOf(baikeNum));//返回百科信息的结果数，默认不返回
-            Observable.create(new ObservableOnSubscribe<JSONObject>() {
-                @Override
-                public void subscribe(@NonNull ObservableEmitter<JSONObject> e) throws Exception {
-                    e.onNext(mAipImageClassify.plantDetect(image_path, options));
-                    e.onComplete(); //结束
-                }
+            Observable.create((ObservableOnSubscribe<JSONObject>) e -> {
+                e.onNext(mAipImageClassify.plantDetect(image_path, options));
+                e.onComplete(); //结束
             }).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<JSONObject>() {
                         @Override
                         public void onSubscribe(@NonNull Disposable d) {
+                            mDisposable.add(d);
                         }
 
                         @Override
@@ -103,24 +122,22 @@ public class AipImageUtils {
      * @param baikeNum   返回百度百科的查询数量
      * @return
      */
-    public void AnimalDetect(String image_path, int top_num, int baikeNum, OnResults mOnResults) {
+    public void AnimalDetect(String image_path, int top_num, int baikeNum, OnResults mOnResults, CompositeDisposable mDisposable) {
         if (checkAIPImageStatus()) {
             mOnResults.OnError("初始化失败!");
         } else {
             HashMap<String, String> options = new HashMap<>();
             options.put("top_num", top_num + "");
             options.put("baike_num", baikeNum + "");
-            Observable.create(new ObservableOnSubscribe<JSONObject>() {
-                @Override
-                public void subscribe(@NonNull ObservableEmitter<JSONObject> e) {
-                    e.onNext(mAipImageClassify.animalDetect(image_path, options));
-                    e.onComplete();
-                }
+            Observable.create((ObservableOnSubscribe<JSONObject>) e -> {
+                e.onNext(mAipImageClassify.animalDetect(image_path, options));
+                e.onComplete();
             }).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<JSONObject>() {
                         @Override
                         public void onSubscribe(@NonNull Disposable d) {
+                            mDisposable.add(d);
                         }
 
                         @Override
@@ -148,6 +165,56 @@ public class AipImageUtils {
         }
     }
 
+    /**
+     * 车辆识别
+     *
+     * @return
+     */
+    @SuppressLint("CheckResult")
+    public void CarDetect(String image_path, int top_num, int baikeNum, OnCarResults results, CompositeDisposable mDisposable) {
+        if (checkAIPImageStatus()) {
+            results.OnError("初始化失败!");
+        } else {
+            HashMap<String, String> options = new HashMap<>();
+            options.put("top_num", top_num + "");
+            options.put("baike_num", baikeNum + "");
+
+            Observable.create((ObservableOnSubscribe<JSONObject>) emitter -> {
+                emitter.onNext(mAipImageClassify.carDetect(image_path, options));
+                emitter.onComplete();
+            }).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<JSONObject>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                            mDisposable.add(d);
+
+                        }
+                        @Override
+                        public void onNext(JSONObject json) {
+                            try {
+                                Logger.json(json.toString());
+                                CarResult result = gson.fromJson(json.toString(), CarResult.class);
+                                results.OnSuccessful(result);
+                            } catch (JsonSyntaxException e) {
+                                e.printStackTrace();
+                                results.OnError("数据异常!");
+                            }
+                        }
+                        @Override
+                        public void onError(Throwable e) {
+                            results.OnError(e.getMessage());
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
+    }
+
+
     private boolean checkAIPImageStatus() {
         if (mAipImageClassify == null) {
             return true;
@@ -157,6 +224,12 @@ public class AipImageUtils {
 
     public interface OnResults {
         void OnSuccessful(PlantAnimalResult result);
+
+        void OnError(String erros);
+    }
+
+    public interface OnCarResults {
+        void OnSuccessful(CarResult result);
 
         void OnError(String erros);
     }

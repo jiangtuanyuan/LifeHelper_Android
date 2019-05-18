@@ -12,12 +12,16 @@ import com.kaopiz.kprogresshud.KProgressHUD;
 import com.lzy.okgo.OkGo;
 
 import butterknife.ButterKnife;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import pers.life.helper.R;
 import pers.life.helper.utils.ActivityCollector;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private KProgressHUD kProgressHUD;
+    private CompositeDisposable mCompositeDisposable;//订阅
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,6 +31,45 @@ public abstract class BaseActivity extends AppCompatActivity {
         initVariables();
         initViews(savedInstanceState);
         ActivityCollector.addActivity(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollector.removeActivity(this);
+        OkGo.getInstance().cancelTag(this);
+        //解除所有未完成的订阅 防止内存泄漏
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
+        }
+    }
+    public CompositeDisposable getmCompositeDisposable() {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        return mCompositeDisposable;
+    }
+
+    /**
+     * 添加订阅
+     *
+     * @param disposable
+     */
+    public void addDisposable(Disposable disposable) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(disposable);
     }
 
     public void initToolbarNav() {
@@ -75,23 +118,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             initToolbar();
         }
         mToolbar.setTitle(title);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ActivityCollector.removeActivity(this);
-        OkGo.getInstance().cancelTag(this);
     }
 
     protected abstract int setLayoutResourceID();

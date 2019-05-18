@@ -3,14 +3,13 @@ package pers.life.helper.view.smart.plant;
 import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
@@ -36,7 +35,7 @@ import pers.life.helper.view.smart.plant.adapter.FlowerCardPagerAdapter;
 import pers.life.helper.view.smart.plant.entity.PlantAnimalResult;
 import pers.life.helper.view.smart.plant.view.ShadowTransformer;
 
-public class PlantMainActivity extends BaseActivity {
+public class PlantMainActivity extends BaseActivity implements AipImageUtils.OnResults {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.iv_image)
@@ -51,6 +50,7 @@ public class PlantMainActivity extends BaseActivity {
     private ShadowTransformer mCardShadowTransformer;
     private FlowerCardPagerAdapter flowerCardPagerAdapter;
     private boolean mIsScrolled;
+
     @Override
     protected int setLayoutResourceID() {
         return R.layout.activity_plant_main;
@@ -61,7 +61,6 @@ public class PlantMainActivity extends BaseActivity {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void initViews(Bundle savedInstanceState) {
         initToolbarNav();
@@ -84,9 +83,7 @@ public class PlantMainActivity extends BaseActivity {
                         mIsScrolled = false;
                         break;
                     case ViewPager.SCROLL_STATE_SETTLING:
-
                         mIsScrolled = true;
-
                         break;
                     case ViewPager.SCROLL_STATE_IDLE:
                         if (!mIsScrolled) {
@@ -108,6 +105,7 @@ public class PlantMainActivity extends BaseActivity {
                 .subscribe(new Observer<Boolean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
+                        getmCompositeDisposable().add(d);
                     }
 
                     @Override
@@ -150,35 +148,12 @@ public class PlantMainActivity extends BaseActivity {
                             .load(resultUri)
                             .into(mIvImage);
                     String path = FileUtils.getPhotoPathFromContentUri(this, resultUri);
-                    LogUtil.e("mIvImage", path);
-
+                    if (TextUtils.isEmpty(path)) {
+                        tvProgress.setText("未获取到图像路径..");
+                        return;
+                    }
                     tvProgress.setText("识别中..");
-                    AipImageUtils.getInstance().PlantDetect(path, 5,
-                            new AipImageUtils.OnResults() {
-                                @Override
-                                public void OnSuccessful(PlantAnimalResult result) {
-                                    mSumList.clear();
-                                    mSumList.addAll(result.getResult());
-                                    tvProgress.setText("识别成功");
-                                    flowerCardPagerAdapter = new FlowerCardPagerAdapter(PlantMainActivity.this);
-                                    for (PlantAnimalResult.ResultBean resultBean : result.getResult()) {
-                                        flowerCardPagerAdapter.addCardItem(resultBean);
-                                    }
-                                    mCardShadowTransformer = new ShadowTransformer(mViewPager, flowerCardPagerAdapter);
-                                    mCardShadowTransformer.enableScaling(true);
-                                    mViewPager.setAdapter(flowerCardPagerAdapter);
-                                    mViewPager.setPageTransformer(false, mCardShadowTransformer);
-                                    mViewPager.setOffscreenPageLimit(result.getResult().size());
-
-
-                                }
-
-                                @Override
-                                public void OnError(String erros) {
-                                    tvProgress.setText("识别成失败");
-                                }
-                            }
-                    );
+                    AipImageUtils.getInstance().PlantDetect(path, 5, this, getmCompositeDisposable());
                     break;
                 default:
                     break;
@@ -191,5 +166,26 @@ public class PlantMainActivity extends BaseActivity {
             mLlAddImage.setVisibility(View.VISIBLE);
             mIvImage.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void OnSuccessful(PlantAnimalResult result) {
+        mSumList.clear();
+        mSumList.addAll(result.getResult());
+        tvProgress.setText("识别成功");
+        flowerCardPagerAdapter = new FlowerCardPagerAdapter(PlantMainActivity.this);
+        for (PlantAnimalResult.ResultBean resultBean : result.getResult()) {
+            flowerCardPagerAdapter.addCardItem(resultBean);
+        }
+        mCardShadowTransformer = new ShadowTransformer(mViewPager, flowerCardPagerAdapter);
+        mCardShadowTransformer.enableScaling(true);
+        mViewPager.setAdapter(flowerCardPagerAdapter);
+        mViewPager.setPageTransformer(false, mCardShadowTransformer);
+        mViewPager.setOffscreenPageLimit(result.getResult().size());
+    }
+
+    @Override
+    public void OnError(String erros) {
+        tvProgress.setText("识别成失败");
     }
 }

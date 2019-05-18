@@ -1,4 +1,4 @@
-package pers.life.helper.view.smart.animal;
+package pers.life.helper.view.smart.car;
 
 import android.Manifest;
 import android.content.Intent;
@@ -18,9 +18,6 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.Observer;
@@ -30,11 +27,12 @@ import pers.life.helper.utils.AipImageUtils;
 import pers.life.helper.utils.FileUtils;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
-import pers.life.helper.view.smart.plant.adapter.FlowerCardPagerAdapter;
-import pers.life.helper.view.smart.plant.entity.PlantAnimalResult;
-import pers.life.helper.view.smart.plant.view.ShadowTransformer;
+import pers.life.helper.view.smart.plant.entity.CarResult;
 
-public class AnimalMainActivity extends BaseActivity implements AipImageUtils.OnResults {
+/**
+ * 车辆识别
+ */
+public class CarMainActivity extends BaseActivity implements AipImageUtils.OnCarResults {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.iv_image)
@@ -45,15 +43,11 @@ public class AnimalMainActivity extends BaseActivity implements AipImageUtils.On
     TextView tvProgress;
     @BindView(R.id.viewPager)
     ViewPager mViewPager;
-
-    private List<PlantAnimalResult.ResultBean> mSumList = new ArrayList<>();//总数据
-    private ShadowTransformer mCardShadowTransformer;
-    private FlowerCardPagerAdapter flowerCardPagerAdapter;
     private boolean mIsScrolled;
 
     @Override
     protected int setLayoutResourceID() {
-        return R.layout.activity_animal_main;
+        return R.layout.activity_car_main;
     }
 
     @Override
@@ -64,7 +58,7 @@ public class AnimalMainActivity extends BaseActivity implements AipImageUtils.On
     @Override
     protected void initViews(Bundle savedInstanceState) {
         initToolbarNav();
-        setTitle("动物识别");
+        setTitle("车辆识别");
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -115,7 +109,7 @@ public class AnimalMainActivity extends BaseActivity implements AipImageUtils.On
                                     .setAllowFlipping(false)
                                     .setActivityTitle("图片裁剪")
                                     .setGuidelines(CropImageView.Guidelines.ON)
-                                    .start(AnimalMainActivity.this);
+                                    .start(CarMainActivity.this);
                         } else {
                             ToastUtil.showToast("权限被拒绝,功能无法使用!");
                         }
@@ -152,7 +146,7 @@ public class AnimalMainActivity extends BaseActivity implements AipImageUtils.On
                         return;
                     }
                     tvProgress.setText("识别中..");
-                    AipImageUtils.getInstance().AnimalDetect(path, 3, 5, this, getmCompositeDisposable());
+                    AipImageUtils.getInstance().CarDetect(path, 3, 5, this, getmCompositeDisposable());
                     break;
                 default:
                     break;
@@ -168,23 +162,12 @@ public class AnimalMainActivity extends BaseActivity implements AipImageUtils.On
     }
 
     @Override
-    public void OnSuccessful(PlantAnimalResult result) {
-        mSumList.clear();
-        mSumList.addAll(result.getResult());
-        tvProgress.setText("识别成功");
-        flowerCardPagerAdapter = new FlowerCardPagerAdapter(AnimalMainActivity.this);
-        for (PlantAnimalResult.ResultBean resultBean : result.getResult()) {
-            flowerCardPagerAdapter.addCardItem(resultBean);
-        }
-        mCardShadowTransformer = new ShadowTransformer(mViewPager, flowerCardPagerAdapter);
-        mCardShadowTransformer.enableScaling(true);
-        mViewPager.setAdapter(flowerCardPagerAdapter);
-        mViewPager.setPageTransformer(false, mCardShadowTransformer);
-        mViewPager.setOffscreenPageLimit(result.getResult().size());
+    public void OnSuccessful(CarResult result) {
+
     }
 
     @Override
     public void OnError(String erros) {
-        tvProgress.setText("识别失败");
+
     }
 }

@@ -2,29 +2,18 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 android {
     signingConfigs {
-        config {
-            keyAlias 'jiang'
-            keyPassword 'jiang1008'
-            storeFile file('../jty.jks')
-            storePassword 'jiang1008'
-        }
-
         release {
-            try {
-                storeFile file("./keystore/jty.jks")
-                storePassword "jiang1008"
-                keyAlias "jiang"
-                keyPassword "jiang1008"
-            } catch (ignored) {
-            }
+            storeFile file(KEY_PATH)
+            storePassword KEY_PASSWORD
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PASSWORD
         }
         debug {
-            storeFile file("./keystore/jty.jks")
-            storePassword "jiang1008"
-            keyAlias "jiang"
-            keyPassword "jiang1008"
+            storeFile file(KEY_PATH)
+            storePassword KEY_PASSWORD
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PASSWORD
         }
-
     }
     compileSdkVersion 28
     defaultConfig {
@@ -50,7 +39,6 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
-
 }
 
 dependencies {
