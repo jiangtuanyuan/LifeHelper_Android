@@ -81,13 +81,13 @@ public class FlowerCardPagerAdapter extends PagerAdapter implements CardAdapter 
     }
 
     private void bind(PlantAnimalResult.ResultBean item, View view) {
-        TextView titleTextView = view.findViewById(R.id.titleTextView);
+        TextView titleTextView =(TextView) view.findViewById(R.id.titleTextView);
         titleTextView.setText(item.getName());
-        TextView tvScore = view.findViewById(R.id.tvScore);
+        TextView tvScore =(TextView) view.findViewById(R.id.tvScore);
         DecimalFormat df = new DecimalFormat("0.00");
         String score = "匹配度：" + df.format(item.getScore() * 100) + "%";
         tvScore.setText(score);
-        ImageView imageView = view.findViewById(R.id.image);
+        ImageView imageView =(ImageView) view.findViewById(R.id.image);
         if (!TextUtils.isEmpty(item.getBaike_info().getImage_url())) {
             Glide.with(mContext)
                     .load(item.getBaike_info().getImage_url())

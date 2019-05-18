@@ -2,34 +2,22 @@ package pers.life.helper.view.smart;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.baidu.ocr.sdk.OCR;
-import com.baidu.ocr.sdk.OnResultListener;
-import com.baidu.ocr.sdk.exception.OCRError;
-import com.baidu.ocr.sdk.model.AccessToken;
-import com.baidu.ocr.ui.camera.CameraActivity;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
-import com.orhanobut.logger.Logger;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import pers.life.helper.R;
-import pers.life.helper.entity.PostcodeEntity;
 import pers.life.helper.entity.Quanxian;
 import pers.life.helper.net.API;
 import pers.life.helper.utils.AppUtils;
-import pers.life.helper.utils.FileUtil;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
 import pers.life.helper.view.smart.animal.AnimalMainActivity;
