@@ -40,6 +40,14 @@
                 android:text="AI-动物识别" />
         </TableRow>
 
+
+        <TableRow tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/tv_car"
+                style="@style/TextViewStyle"
+                android:text="AI-车辆识别" />
+        </TableRow>
     </TableLayout>
 
 

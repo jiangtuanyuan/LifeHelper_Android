@@ -21,12 +21,11 @@ import pers.life.helper.utils.AppUtils;
 import pers.life.helper.utils.ToastUtil;
 import pers.life.helper.view.base.BaseActivity;
 import pers.life.helper.view.smart.animal.AnimalMainActivity;
+import pers.life.helper.view.smart.car.CarMainActivity;
 import pers.life.helper.view.smart.plant.PlantMainActivity;
 import pers.life.helper.view.smart.text.TextMainActivity;
 
 public class SmartActivity extends BaseActivity {
-    private static final int REQUEST_CODE_GENERAL_BASIC = 106;
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tv_text)
@@ -35,9 +34,9 @@ public class SmartActivity extends BaseActivity {
     TextView tvPlant;
     @BindView(R.id.tv_animal)
     TextView tvAnimal;
-
+    @BindView(R.id.tv_car)
+    TextView tvCar;
     private Quanxian mQuanxian;
-
     @Override
     protected int setLayoutResourceID() {
         return R.layout.activity_smart;
@@ -47,7 +46,6 @@ public class SmartActivity extends BaseActivity {
     protected void initVariables() {
 
     }
-
     @Override
     protected void initViews(Bundle savedInstanceState) {
         initToolbarNav();
@@ -58,7 +56,7 @@ public class SmartActivity extends BaseActivity {
         AppUtils.checkPermissions(this);
     }
 
-    @OnClick({R.id.tv_text, R.id.tv_plant, R.id.tv_animal})
+    @OnClick({R.id.tv_text, R.id.tv_plant, R.id.tv_animal,R.id.tv_car})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_text://文本
@@ -89,6 +87,17 @@ public class SmartActivity extends BaseActivity {
                 } else {
                     if (mQuanxian.getAnima() == 1) {
                         startActivity(new Intent(this, AnimalMainActivity.class));
+                    } else {
+                        ToastUtil.showToast("权限拒绝!");
+                    }
+                }
+                break;
+            case R.id.tv_car://车辆识别
+                if (mQuanxian == null) {
+                    ToastUtil.showToast("请等待加载完成..");
+                } else {
+                    if (mQuanxian.getCar() == 1) {
+                        startActivity(new Intent(this, CarMainActivity.class));
                     } else {
                         ToastUtil.showToast("权限拒绝!");
                     }

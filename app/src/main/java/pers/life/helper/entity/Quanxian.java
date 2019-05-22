@@ -19,6 +19,15 @@ public class Quanxian {
     private int text = 0;
     private int plant = 0;
     private int anima = 0;
+    private int car = 0;
+
+    public int getCar() {
+        return car;
+    }
+
+    public void setCar(int car) {
+        this.car = car;
+    }
 
     public static Quanxian objectFromData(String str) {
 
