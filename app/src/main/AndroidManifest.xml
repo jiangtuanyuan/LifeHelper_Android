@@ -38,7 +38,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:appComponentFactory"
         tools:targetApi="p">
-        <activity android:name=".view.smart.car.CarMainActivity"></activity>
+
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -129,6 +129,9 @@
             android:configChanges="orientation|screenSize" />
         <activity
             android:name=".view.smart.animal.AnimalMainActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".view.smart.car.CarMainActivity"
             android:configChanges="orientation|screenSize" />
     </application>
 

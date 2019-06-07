@@ -19,6 +19,7 @@ import pers.life.helper.utils.AppUtils;
 import pers.life.helper.utils.IOSDialog;
 import pers.life.helper.utils.IOSDialogUtils;
 import pers.life.helper.utils.SPUtils;
+
 import pers.life.helper.view.base.BaseActivity;
 import pers.life.helper.view.card.QueryCardActivity;
 import pers.life.helper.view.courier.CouerierActivity;
@@ -138,7 +139,6 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
-
     //实现home键盘
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
