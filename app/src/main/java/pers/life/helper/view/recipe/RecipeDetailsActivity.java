@@ -8,6 +8,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
@@ -38,7 +39,7 @@ public class RecipeDetailsActivity extends BaseActivity {
     @BindView(R.id.tv_ingredients)
     TextView tvIngredients;
     @BindView(R.id.recycler_view)
-    RecyclerViewImplementsContextMenu recyclerView;
+    RecyclerView recyclerView;
     @BindView(R.id.scrollView)
     ScrollView scrollView;
     private RecipeEntity mRecipeEntity;
@@ -92,9 +93,18 @@ public class RecipeDetailsActivity extends BaseActivity {
         tvImtro.setText("点评:" + mRecipeEntity.getImtro());
         tvBurden.setText("配料:" + mRecipeEntity.getBurden());
         tvIngredients.setText("材料:" + mRecipeEntity.getIngredients());
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
+        mLinearLayoutManager.setAutoMeasureEnabled(true);
+        recyclerView.setLayoutManager(mLinearLayoutManager);
+        //scrollView 嵌套RecyclerView滑动卡顿处理
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setFocusable(false);
+
+        mSumList.clear();
+        mSumList.addAll(mRecipeEntity.getSteps());
+
         mRecipeDetailsStepsAdapter = new RecipeDetailsStepsAdapter(mSumList);
         mRecipeDetailsStepsAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             if (view.getId() == R.id.iv_image) {
@@ -102,9 +112,7 @@ public class RecipeDetailsActivity extends BaseActivity {
             }
         });
         recyclerView.setAdapter(mRecipeDetailsStepsAdapter);
-        mSumList.clear();
-        mSumList.addAll(mRecipeEntity.getSteps());
         mRecipeDetailsStepsAdapter.notifyDataSetChanged();
-        scrollView.scrollTo(0, 0);//滑动到顶部
+        //scrollView.scrollTo(0, 0);//滑动到顶部
     }
 }

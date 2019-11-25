@@ -65,6 +65,7 @@ public class JokeActivity extends BaseActivity implements OnRefreshListener, OnL
     protected void initViews(Bundle savedInstanceState) {
         setTitle("随机笑话");
         initToolbarNav();
+
         refreshLayout.setEnableLoadMore(true);
         refreshLayout.setEnableRefresh(true);
         refreshLayout.setOnRefreshListener(this);//进行下拉刷新的监听

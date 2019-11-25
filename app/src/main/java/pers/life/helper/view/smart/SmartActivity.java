@@ -51,7 +51,7 @@ public class SmartActivity extends BaseActivity {
         initToolbarNav();
         setTitle("智能识别");
         //重新获取相机权限
-        showProgressDialog("加载中..");
+        //showProgressDialog("加载中..");
         getQuanxian();
         AppUtils.checkPermissions(this);
     }
@@ -109,6 +109,31 @@ public class SmartActivity extends BaseActivity {
     }
 
     private void getQuanxian() {
+        mQuanxian=new Quanxian();
+        mQuanxian.setAnima(1);
+        mQuanxian.setCar(1);
+        mQuanxian.setPlant(1);
+        mQuanxian.setText(1);
+
+        if (mQuanxian.getText() == 1) {
+            tvText.setTextColor(getResources().getColor(R.color.main_color));
+        } else {
+            tvText.setTextColor(getResources().getColor(R.color.font_color));
+        }
+
+        if (mQuanxian.getPlant() == 1) {
+            tvPlant.setTextColor(getResources().getColor(R.color.main_color));
+        } else {
+            tvPlant.setTextColor(getResources().getColor(R.color.font_color));
+        }
+
+        if (mQuanxian.getAnima() == 1) {
+            tvAnimal.setTextColor(getResources().getColor(R.color.main_color));
+        } else {
+            tvAnimal.setTextColor(getResources().getColor(R.color.font_color));
+        }
+
+/*
         OkGo.<String>get(API.APP_QUANXIAN)
                 .tag(this)
                 .execute(new StringCallback() {
@@ -146,7 +171,7 @@ public class SmartActivity extends BaseActivity {
                     public void onError(Response<String> response) {
                         closeProgressDialog();
                     }
-                });
+                });*/
 
     }
 

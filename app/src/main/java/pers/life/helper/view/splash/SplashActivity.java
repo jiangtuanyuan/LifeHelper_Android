@@ -42,14 +42,16 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void initViews(Bundle savedInstanceState) {
         new Handler().postDelayed(() -> {
-            String userName = SPUtils.getInstance().getString(SPUtils.USER_NAME);
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            finish();
+           /* String userName = SPUtils.getInstance().getString(SPUtils.USER_NAME);
             String userPwd = SPUtils.getInstance().getString(SPUtils.USER_PWD);
             if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userPwd)) {
                 Login(userName, userPwd);
             } else {
                 startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 SplashActivity.this.finish();
-            }
+            }*/
         }, 2000);
         tvVersion.setText("v: " + AppUtils.getVersionName(this));
     }

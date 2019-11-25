@@ -81,7 +81,7 @@
                 android:textColor="@color/main_color"
                 android:textSize="22sp" />
 
-            <pers.life.helper.utils.RecyclerViewImplementsContextMenu
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
